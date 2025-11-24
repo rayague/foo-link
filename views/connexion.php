@@ -1,24 +1,21 @@
 <?php
-session_start();
+    session_start();
 
-// Exemple : après validation du formulaire et vérification en base de données
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['floating_email'] ?? '');
-    $password = trim($_POST['floating_password'] ?? '');
+    // include('template.php');
 
-    // Ici, on simule un utilisateur valide
-    if ($username === 'admin' && $password === '1234') {
-        // Stocker les infos de session
-        $_SESSION['user_id'] = 1;
-        $_SESSION['username'] = $username;
-
-        // Redirection vers le dashboard
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        $error = "Identifiants incorrects.";
+    if(isset($_SESSION['flash']))
+    {
+        foreach($_SESSION['flash'] as $type => $message)
+        {
+            echo $message;
+        }
+        unset($_SESSION['flash']);
     }
-}
+
+    if(isset($_SESSION['user']))
+    {
+        header('Location: ../index.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -95,9 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="text-4xl md:text-5xl text-center font-bold mb-6 text-foreground">Connexion</h1>
 
 
-            <form class="max-w-md mx-auto">
+
+            <form class="max-w-md mx-auto" method="POST" action="../controllers/ConnexionController.php">
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="email" name="floating_email" id="floating_email"
+                    <input type="email" name="email" id="floating_email"
                         class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
                         placeholder=" " required />
                     <label for="floating_email"
@@ -105,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         address</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="floating_password" id="floating_password"
+                    <input type="password" name="password" id="floating_password"
                         class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
                         placeholder=" " required />
                     <label for="floating_password"
@@ -113,8 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         de passe</label>
                 </div>
 
-
-                <button type="submit"
+                <button type="submit" name="action" value="login"
                     class="w-full bg-blue-500 text-white py-3 mt-8 mb-4 rounded-lg hover:bg-blue-700 transition ease-in font-semibold">
                     Connexion
                 </button>

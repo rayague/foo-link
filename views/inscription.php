@@ -1,3 +1,22 @@
+<?php
+    session_start();
+
+
+    if(isset($_SESSION['flash']))
+    {
+        foreach($_SESSION['flash'] as $type => $message)
+        {
+            echo $message;
+        }
+        unset($_SESSION['flash']);
+    }
+
+    if(isset($_SESSION['user']))
+    {
+        header('Location: ../index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -65,14 +84,16 @@
         </div>
     </section>
 
-    <!-- Contact Form -->
     <section class="max-w-2xl mx-auto text-white px-4 py-12">
+        <?php if (!empty($error)): ?>
+        <p class="text-red-400 text-center mb-4"><?= $error ?></p>
+        <?php endif; ?>
 
         <div class="bg-gray-800 border border-blue-500 rounded-xl p-8 shadow-lg shadow-gray-700">
             <h1 class="text-4xl md:text-5xl text-center font-bold mb-6 text-foreground">Inscription</h1>
 
 
-            <form class="max-w-md mx-auto">
+            <form class="max-w-md mx-auto" method="POST" action="../controllers/inscriptionController.php">
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="email" name="floating_email" id="floating_email"
                         class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
@@ -82,18 +103,18 @@
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="floating_password" id="floating_password"
+                    <input type="password" name="password" id="password"
                         class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
                         placeholder=" " required />
-                    <label for="floating_password"
+                    <label for="password"
                         class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Mot
                         de passe</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="repeat_password" id="floating_repeat_password"
+                    <input type="password" name="password2" id="password2"
                         class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
                         placeholder=" " required />
-                    <label for="floating_repeat_password"
+                    <label for="password2"
                         class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirmer
                         mot de passe</label>
                 </div>
@@ -117,7 +138,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone"
+                        <input type="tel" name="floating_phone" id="floating_phone"
                             class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
                             placeholder=" " required />
                         <label for="floating_phone"
@@ -148,6 +169,10 @@
 
 
     </section>
+
+
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-950 text-white w-[90%] my-10 rounded-lg mx-auto py-8">

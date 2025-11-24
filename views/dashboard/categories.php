@@ -49,102 +49,38 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap">
-
+                    <?php if (isset($categories) && is_array($categories)): ?>
+                        <?php foreach ($categories as $categorie): ?>
+                            <section class="grid place-items-center p-4 w-80">
+                                <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-lg">
+                                    <div class="relative bg-clip-border pt-2 !mt-4 mx-4 rounded-xl overflow-hidden bg-white text-gray-700 rounded-none">
+                                        <p class="bg-blue-500 inline p-1 m-2 text-white bold rounded-md antialiased font-sans text-sm font-light leading-normal text-blue-gray-900 font-medium">
+                                            <?php echo htmlspecialchars($categorie['nom']); ?>
+                                        </p>
+                                    </div>
+                                    <div class="p-6 px-4 pt-0">
+                                        <form method="POST" action="../../controllers/CategorieController.php">
+                                            <input type="hidden" name="id" value="<?php echo $categorie['id']; ?>">
+                                            <button name="action" value="edit" class="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Modifier</button>
+                                            <button name="action" value="delete" class="bg-red-500 text-white px-3 py-1 rounded" onclick="return confirm('Supprimer cette catégorie ?');">Supprimer</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-gray-600">Aucune catégorie trouvée.</p>
+                    <?php endif; ?>
+                    <!-- Formulaire d'ajout -->
                     <section class="grid place-items-center p-4 w-80">
-                        <div
-                            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-lg">
-                            <div
-                                class="relative bg-clip-border pt-2 !mt-4 mx-4 rounded-xl overflow-hidden bg-white text-gray-700 rounded-none">
-                                <p
-                                    class="bg-blue-500 inline p-1 m-2 text-white bold rounded-md antialiased font-sans text-sm font-light leading-normal text-blue-gray-900 font-medium">
-                                    Utilisateur
-                                </p>
-
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mt-1 mb-2 text-[20px] font-bold">
-                                    Autodesk looks to future of 3D printing with Project Escher
-                                </p>
-                            </div>
-                            <div class="p-6 px-4 pt-0">
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-inherit font-normal text-gray-600">
-                                    I will be the leader of a company that ends up being worth billions of
-                                    dollars, because I got the answers. I understand culture. I am the
-                                    nucleus.
-                                </p>
-                            </div>
-                            <div class="p-6 pt-0 px-4">
-                                <button
-                                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-gray-900"
-                                    type="button" data-ripple-light="true">
-                                    Voir plus
-                                </button>
-                            </div>
+                        <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-lg p-4">
+                            <h3 class="text-lg font-semibold mb-2">Ajouter une catégorie</h3>
+                            <form method="POST" action="../../controllers/CategorieController.php">
+                                <input type="text" name="nom" placeholder="Nom de la catégorie" class="mb-2 p-2 border rounded w-full" required>
+                                <button name="action" value="add" class="bg-blue-500 text-white px-3 py-1 rounded">Ajouter</button>
+                            </form>
                         </div>
                     </section>
-                    <section class="grid place-items-center p-4 w-80">
-                        <div
-                            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-auto max-w-[24rem]">
-                            <div
-                                class="relative bg-clip-border pt-2 !mt-4 mx-4 rounded-xl overflow-hidden bg-white text-gray-700 rounded-none">
-                                <p
-                                    class="bg-blue-500 inline p-1 m-2 text-white bold rounded-md antialiased font-sans text-sm font-light leading-normal text-blue-gray-900 font-medium">
-                                    Utilisateur
-                                </p>
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mt-1 mb-2 text-[20px] font-bold">
-                                    Autodesk looks to future of 3D printing with Project Escher
-                                </p>
-                            </div>
-                            <div class="p-6 px-4 pt-0">
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-inherit font-normal text-gray-600">
-                                    I will be the leader of a company that ends up being worth billions of
-                                    dollars, because I got the answers. I understand culture. I am the
-                                    nucleus.
-                                </p>
-                            </div>
-                            <div class="p-6 pt-0 px-4">
-                                <button
-                                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-gray-900"
-                                    type="button" data-ripple-light="true">
-                                    Voir plus
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="grid place-items-center p-4 w-80">
-                        <div
-                            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-auto max-w-[24rem]">
-                            <div
-                                class="relative bg-clip-border pt-2 !mt-4 mx-4 rounded-xl overflow-hidden bg-white text-gray-700 rounded-none">
-                                <p
-                                    class="bg-blue-500 inline p-1 m-2 text-white bold rounded-md antialiased font-sans text-sm font-light leading-normal text-blue-gray-900 font-medium">
-                                    Utilisateur
-                                </p>
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mt-1 mb-2 text-[20px] font-bold">
-                                    Autodesk looks to future of 3D printing with Project Escher
-                                </p>
-                            </div>
-                            <div class="p-6 px-4 pt-0">
-                                <p
-                                    class="block antialiased font-sans text-base font-light leading-relaxed text-inherit font-normal text-gray-600">
-                                    I will be the leader of a company that ends up being worth billions of
-                                    dollars, because I got the answers. I understand culture. I am the
-                                    nucleus.
-                                </p>
-                            </div>
-                            <div class="p-6 pt-0 px-4">
-                                <button
-                                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-gray-900"
-                                    type="button" data-ripple-light="true">
-                                    Voir plus
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-
                 </div>
             </div>
         </header>
