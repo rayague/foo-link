@@ -24,7 +24,7 @@ if (isset($requireAdmin) && $requireAdmin === true) {
     <title>Dashboard — Foo-Link</title>
 </head>
 <body class="bg-gray-100">
-    <?php include __DIR__ . '/../partials/navbar.php'; ?>
+    
 
     <div class="flex flex-col md:flex-row">
         <?php include __DIR__ . '/../partials/dashboard_sidebar.php'; ?>

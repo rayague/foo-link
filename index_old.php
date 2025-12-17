@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/models/Recette.php';
 require_once __DIR__ . '/models/Like.php';
-require_once __DIR__ . '/models/Commentaire.php';
+$require_once __DIR__ . '/models/Commentaire.php';
 require_once __DIR__ . '/models/User.php';
 $dsn = 'mysql:host=localhost;dbname=foo_link;charset=utf8';
 $user = 'root';
@@ -28,17 +28,6 @@ $topUsers = $userModel->getTopContributeurs(5);
 <head>
     <?php include __DIR__ . '/views/partials/head.php'; ?>
     <style>
-        /* Force navbar text to be white - override dashboard_style.css */
-        #glassNav a, #glassNav .nav-link, #glassNav .nav-glass-link, #glassNav .mobile-link {
-            color: white !important;
-        }
-        #glassNav a:hover {
-            color: #c084fc !important; /* purple-400 */
-        }
-        #glassNav .text-white {
-            color: white !important;
-        }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }

@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet - Foo-Link</title>
+    <style>
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .cover-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            page-break-after: always;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: -20px;
+            padding: 20px;
+        }
+        
+        .cover-page h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        
+        .cover-page h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .cover-page .meta {
+            margin-top: 60px;
+            font-size: 16px;
+        }
+        
+        .cover-page .meta p {
+            margin: 10px 0;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            page-break-after: avoid;
+        }
+        
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+            overflow-x: auto;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 5px solid;
+            page-break-inside: avoid;
+        }
+        
+        .alert-info {
+            background: #e7f3ff;
+            border-color: #2196F3;
+            color: #0c5460;
+        }
+        
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+        
+        .badge-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .badge-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .section {
+            page-break-inside: avoid;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        .toc {
+            margin: 30px 0;
+        }
+        
+        .toc-item {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .toc-item a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .toc-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .architecture-diagram {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                max-width: 100%;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            a {
+                color: #333;
+                text-decoration: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE DE COUVERTURE -->
+    <div class="cover-page">
+        <h1>🍳 Foo-Link</h1>
+        <h2>Plateforme de Partage de Recettes</h2>
+        <div style="margin: 40px 0;">
+            <div style="font-size: 18px; opacity: 0.9;">
+                Rapport de Projet et Guide d'Installation
+            </div>
+        </div>
+        <div class="meta">
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p><strong>Date:</strong> Décembre 2025</p>
+            <p><strong>Repository:</strong> rayague/foo-link</p>
+            <p><strong>Technologies:</strong> PHP 8.2 • MySQL • Tailwind CSS</p>
+        </div>
+    </div>
+
+    <!-- TABLE DES MATIÈRES -->
+    <div class="page-break"></div>
+    <h1>📋 Table des Matières</h1>
+    <div class="toc">
+        <div class="toc-item">1. <a href="#presentation">Présentation du Projet</a></div>
+        <div class="toc-item">2. <a href="#fonctionnalites">Fonctionnalités</a></div>
+        <div class="toc-item">3. <a href="#architecture">Architecture Technique</a></div>
+        <div class="toc-item">4. <a href="#technologies">Technologies Utilisées</a></div>
+        <div class="toc-item">5. <a href="#prerequis">Prérequis</a></div>
+        <div class="toc-item">6. <a href="#installation">Installation Pas à Pas</a></div>
+        <div class="toc-item">7. <a href="#configuration">Configuration</a></div>
+        <div class="toc-item">8. <a href="#utilisation">Guide d'Utilisation</a></div>
+        <div class="toc-item">9. <a href="#securite">Sécurité</a></div>
+        <div class="toc-item">10. <a href="#structure">Structure des Fichiers</a></div>
+        <div class="toc-item">11. <a href="#api">API Documentation</a></div>
+        <div class="toc-item">12. <a href="#problemes">Problèmes Connus et Limitations</a></div>
+        <div class="toc-item">13. <a href="#ameliorations">Améliorations Futures</a></div>
+    </div>
+
+    <!-- PRÉSENTATION -->
+    <div class="page-break"></div>
+    <h1 id="presentation">1. 📖 Présentation du Projet</h1>
+    
+    <h2>1.1 Vue d'ensemble</h2>
+    <p>
+        <strong>Foo-Link</strong> est une plateforme web collaborative permettant aux passionnés de cuisine de partager, découvrir et commenter des recettes culinaires du monde entier. Le projet vise à créer une communauté active de gourmets créatifs autour du partage de savoir-faire culinaire.
+    </p>
+
+    <h2>1.2 Objectifs</h2>
+    <ul>
+        <li>Créer une plateforme intuitive et moderne pour le partage de recettes</li>
+        <li>Faciliter la découverte de nouvelles recettes via un système de recherche et de catégorisation</li>
+        <li>Encourager l'interaction entre utilisateurs (likes, commentaires)</li>
+        <li>Offrir un tableau de bord complet pour la gestion des recettes</li>
+        <li>Mettre en avant les contributeurs les plus actifs de la communauté</li>
+    </ul>
+
+    <h2>1.3 Public cible</h2>
+    <ul>
+        <li><strong>Amateurs de cuisine</strong> souhaitant partager leurs créations</li>
+        <li><strong>Débutants</strong> à la recherche d'inspiration et de recettes faciles</li>
+        <li><strong>Professionnels</strong> voulant partager leur expertise</li>
+        <li><strong>Communauté culinaire</strong> cherchant un espace d'échange</li>
+    </ul>
+
+    <!-- FONCTIONNALITÉS -->
+    <h1 id="fonctionnalites">2. ✨ Fonctionnalités</h1>
+
+    <h2>2.1 Fonctionnalités Utilisateur</h2>
+    
+    <h3>Authentification</h3>
+    <ul>
+        <li>✅ Inscription avec email et mot de passe</li>
+        <li>✅ Connexion sécurisée avec hachage des mots de passe</li>
+        <li>✅ Protection CSRF sur les formulaires</li>
+        <li>✅ Gestion de session utilisateur</li>
+        <li>✅ Déconnexion</li>
+    </ul>
+
+    <h3>Gestion des Recettes</h3>
+    <ul>
+        <li>✅ Création de nouvelles recettes (titre, description, catégorie)</li>
+        <li>✅ Modification de ses propres recettes</li>
+        <li>✅ Suppression de recettes</li>
+        <li>✅ Visualisation détaillée d'une recette</li>
+        <li>✅ Compteur de vues automatique</li>
+        <li>✅ Catégorisation des recettes</li>
+    </ul>
+
+    <h3>Interactions Sociales</h3>
+    <ul>
+        <li>✅ Système de likes/unlikes sur les recettes</li>
+        <li>✅ Commentaires sur les recettes</li>
+        <li>✅ Affichage du nombre de likes et commentaires</li>
+        <li>✅ Liste des utilisateurs ayant aimé une recette</li>
+    </ul>
+
+    <h3>Recherche et Découverte</h3>
+    <ul>
+        <li>✅ Barre de recherche avec suggestions en temps réel</li>
+        <li>✅ Recherche par titre et description</li>
+        <li>✅ Pagination des résultats</li>
+        <li>✅ Recettes populaires (les plus vues)</li>
+        <li>✅ Top recettes (les plus likées)</li>
+        <li>✅ Top contributeurs</li>
+    </ul>
+
+    <h2>2.2 Fonctionnalités Dashboard</h2>
+    <ul>
+        <li>✅ Tableau de bord personnel avec statistiques</li>
+        <li>✅ Gestion complète des recettes (CRUD)</li>
+        <li>✅ Gestion des commentaires</li>
+        <li>✅ Gestion des catégories</li>
+        <li>✅ Profil utilisateur éditable</li>
+        <li>✅ Statistiques d'utilisation</li>
+    </ul>
+
+    <h2>2.3 Design et UX</h2>
+    <ul>
+        <li>✅ Design moderne avec effet glassmorphism</li>
+        <li>✅ Thème sombre avec dégradés purple/blue</li>
+        <li>✅ Animations CSS fluides</li>
+        <li>✅ Interface responsive (desktop et mobile)</li>
+        <li>✅ Navigation intuitive</li>
+        <li>✅ Feedback visuel sur les actions</li>
+    </ul>
+
+    <!-- ARCHITECTURE -->
+    <div class="page-break"></div>
+    <h1 id="architecture">3. 🏗️ Architecture Technique</h1>
+
+    <h2>3.1 Architecture MVC</h2>
+    <p>Le projet suit le pattern <strong>MVC (Modèle-Vue-Contrôleur)</strong> pour une séparation claire des responsabilités :</p>
+
+    <div class="architecture-diagram">
+        <pre style="text-align: left; background: white; border: 2px solid #667eea;">
+┌─────────────────────────────────────────────────────────────┐
+│                        CLIENT (Navigateur)                   │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ HTTP Request
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    CONTRÔLEURS (Controllers/)                │
+│  • RecetteController.php    • ConnexionController.php      │
+│  • CommentaireController.php • inscriptionController.php   │
+│  • CategorieController.php   • ProfilController.php        │
+│  • LikeController.php        • StatController.php          │
+└───────────────┬─────────────────────┬───────────────────────┘
+                │                     │
+                │ Logique Métier      │ Récupération Données
+                ▼                     ▼
+    ┌──────────────────┐    ┌──────────────────────┐
+    │   VUES (Views/)  │    │   MODÈLES (Models/)  │
+    │  • recettes.php  │    │  • Recette.php       │
+    │  • recette.php   │    │  • User.php          │
+    │  • connexion.php │    │  • Commentaire.php   │
+    │  • dashboard/    │    │  • Like.php          │
+    │  • partials/     │    │  • Categorie.php     │
+    └──────────────────┘    │  • Database.php      │
+                            └──────────┬───────────┘
+                                       │
+                                       │ PDO
+                                       ▼
+                            ┌──────────────────────┐
+                            │   BASE DE DONNÉES    │
+                            │   MySQL (foo_link)   │
+                            └──────────────────────┘
+        </pre>
+    </div>
+
+    <h2>3.2 Composants Principaux</h2>
+
+    <h3>Modèles (Models/)</h3>
+    <ul>
+        <li><strong>Database.php</strong> : Classe parent gérant la connexion PDO</li>
+        <li><strong>Recette.php</strong> : Gestion CRUD des recettes, pagination, recherche</li>
+        <li><strong>User.php</strong> : Authentification, gestion des utilisateurs</li>
+        <li><strong>Commentaire.php</strong> : Gestion des commentaires</li>
+        <li><strong>Like.php</strong> : Système de likes/unlikes</li>
+        <li><strong>Categorie.php</strong> : Gestion des catégories</li>
+    </ul>
+
+    <h3>Contrôleurs (Controllers/)</h3>
+    <ul>
+        <li><strong>RecetteController.php</strong> : Actions CRUD sur les recettes</li>
+        <li><strong>ConnexionController.php</strong> : Login/Logout</li>
+        <li><strong>inscriptionController.php</strong> : Création de compte</li>
+        <li><strong>CommentaireController.php</strong> : Gestion des commentaires</li>
+        <li><strong>LikeController.php</strong> : Actions like/unlike</li>
+        <li><strong>CategorieController.php</strong> : CRUD catégories</li>
+        <li><strong>ProfilController.php</strong> : Mise à jour profil</li>
+        <li><strong>StatController.php</strong> : Statistiques</li>
+    </ul>
+
+    <h3>Vues (Views/)</h3>
+    <ul>
+        <li><strong>Pages publiques</strong> : index.php, recettes.php, recette.php, connexion.php, inscription.php</li>
+        <li><strong>Dashboard</strong> : index.php, recettes.php, commentaires.php, categories.php, profil.php</li>
+        <li><strong>Partials</strong> : navbar.php, footer.php, head.php, dashboard_sidebar.php</li>
+    </ul>
+
+    <h3>Helpers & Services</h3>
+    <ul>
+        <li><strong>csrf.php</strong> : Génération et validation des tokens CSRF</li>
+        <li><strong>StatService.php</strong> : Calcul des statistiques</li>
+    </ul>
+
+    <h2>3.3 Base de Données</h2>
+    <p>Schéma relationnel avec les tables suivantes :</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Table</th>
+                <th>Description</th>
+                <th>Clés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>users</code></td>
+                <td>Comptes utilisateurs</td>
+                <td>PK: id</td>
+            </tr>
+            <tr>
+                <td><code>recettes</code></td>
+                <td>Recettes publiées</td>
+                <td>PK: id, FK: user_id, categorie_id</td>
+            </tr>
+            <tr>
+                <td><code>commentaires</code></td>
+                <td>Commentaires sur recettes</td>
+                <td>PK: id, FK: recette_id, user_id</td>
+            </tr>
+            <tr>
+                <td><code>likes</code></td>
+                <td>Likes utilisateur-recette</td>
+                <td>PK: id, FK: recette_id, user_id</td>
+            </tr>
+            <tr>
+                <td><code>categories</code></td>
+                <td>Catégories de recettes</td>
+                <td>PK: id</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- TECHNOLOGIES -->
+    <div class="page-break"></div>
+    <h1 id="technologies">4. 💻 Technologies Utilisées</h1>
+
+    <h2>4.1 Backend</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Technologie</th>
+                <th>Version</th>
+                <th>Utilisation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PHP</strong></td>
+                <td>8.2.12</td>
+                <td>Langage principal, logique serveur</td>
+            </tr>
+            <tr>
+                <td><strong>MySQL</strong></td>
+                <td>8.0+</td>
+                <td>Base de données relationnelle</td>
+            </tr>
+            <tr>
+                <td><strong>PDO</strong></td>
+                <td>-</td>
+                <td>Abstraction base de données, requêtes préparées</td>
+            </tr>
+            <tr>
+                <td><strong>Apache</strong></td>
+                <td>2.4.58</td>
+                <td>Serveur web</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4.2 Frontend</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Technologie</th>
+                <th>Version</th>
+                <th>Utilisation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>HTML5</strong></td>
+                <td>-</td>
+                <td>Structure des pages</td>
+            </tr>
+            <tr>
+                <td><strong>CSS3</strong></td>
+                <td>-</td>
+                <td>Styles, animations, glassmorphism</td>
+            </tr>
+            <tr>
+                <td><strong>Tailwind CSS</strong></td>
+                <td>CDN</td>
+                <td>Framework CSS utilitaire</td>
+            </tr>
+            <tr>
+                <td><strong>JavaScript (Vanilla)</strong></td>
+                <td>ES6+</td>
+                <td>Interactivité, AJAX, autocomplétion</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4.3 Sécurité</h2>
+    <ul>
+        <li><span class="badge badge-success">✓</span> <strong>password_hash/password_verify</strong> : Hachage sécurisé des mots de passe</li>
+        <li><span class="badge badge-success">✓</span> <strong>Requêtes préparées PDO</strong> : Protection contre les injections SQL</li>
+        <li><span class="badge badge-success">✓</span> <strong>Tokens CSRF</strong> : Protection contre les attaques CSRF</li>
+        <li><span class="badge badge-success">✓</span> <strong>htmlspecialchars()</strong> : Protection contre les attaques XSS</li>
+        <li><span class="badge badge-success">✓</span> <strong>Sessions PHP</strong> : Gestion sécurisée des sessions</li>
+    </ul>
+
+    <!-- PRÉREQUIS -->
+    <div class="page-break"></div>
+    <h1 id="prerequis">5. 📋 Prérequis</h1>
+
+    <h2>5.1 Logiciels Requis</h2>
+
+    <div class="alert alert-info">
+        <strong>💡 Recommandation :</strong> Nous recommandons l'utilisation de <strong>XAMPP</strong> qui inclut tous les composants nécessaires.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Composant</th>
+                <th>Version Minimale</th>
+                <th>Version Recommandée</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PHP</strong></td>
+                <td>8.0</td>
+                <td>8.2.12</td>
+            </tr>
+            <tr>
+                <td><strong>MySQL</strong></td>
+                <td>5.7</td>
+                <td>8.0+</td>
+            </tr>
+            <tr>
+                <td><strong>Apache</strong></td>
+                <td>2.4</td>
+                <td>2.4.58</td>
+            </tr>
+            <tr>
+                <td><strong>Navigateur Web</strong></td>
+                <td>Chrome 90+, Firefox 88+, Edge 90+</td>
+                <td>Dernière version</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5.2 Extensions PHP Nécessaires</h2>
+    <ul>
+        <li>✅ <code>pdo</code> - Abstraction de base de données</li>
+        <li>✅ <code>pdo_mysql</code> - Driver MySQL pour PDO</li>
+        <li>✅ <code>mbstring</code> - Support des chaînes multi-octets</li>
+        <li>✅ <code>session</code> - Gestion des sessions</li>
+    </ul>
+
+    <h2>5.3 Connaissances Préalables</h2>
+    <ul>
+        <li>Bases de l'administration système (Windows/Linux)</li>
+        <li>Utilisation d'un terminal/ligne de commande</li>
+        <li>Concepts de base des serveurs web</li>
+        <li>Notions de bases de données SQL</li>
+    </ul>
+
+    <!-- INSTALLATION -->
+    <div class="page-break"></div>
+    <h1 id="installation">6. 🚀 Installation Pas à Pas</h1>
+
+    <h2>6.1 Installation de XAMPP</h2>
+
+    <h3>Étape 1 : Téléchargement</h3>
+    <ol>
+        <li>Rendez-vous sur <strong>https://www.apachefriends.org</strong></li>
+        <li>Téléchargez XAMPP pour votre système d'exploitation (Windows/Mac/Linux)</li>
+        <li>Version recommandée : XAMPP 8.2.12 (PHP 8.2.12)</li>
+    </ol>
+
+    <h3>Étape 2 : Installation</h3>
+    <ol>
+        <li>Exécutez le fichier d'installation téléchargé</li>
+        <li>Sélectionnez les composants :
+            <ul>
+                <li>✅ Apache</li>
+                <li>✅ MySQL</li>
+                <li>✅ PHP</li>
+                <li>✅ phpMyAdmin</li>
+            </ul>
+        </li>
+        <li>Choisissez le répertoire d'installation (ex: <code>C:\xampp</code>)</li>
+        <li>Suivez l'assistant d'installation jusqu'à la fin</li>
+    </ol>
+
+    <div class="alert alert-warning">
+        <strong>⚠️ Attention :</strong> Sur Windows, évitez d'installer XAMPP dans <code>Program Files</code> pour éviter les problèmes de permissions.
+    </div>
+
+    <h3>Étape 3 : Démarrage des Services</h3>
+    <ol>
+        <li>Lancez <strong>XAMPP Control Panel</strong></li>
+        <li>Cliquez sur <strong>Start</strong> pour Apache</li>
+        <li>Cliquez sur <strong>Start</strong> pour MySQL</li>
+        <li>Vérifiez que les deux services affichent un fond vert</li>
+    </ol>
+
+    <h2>6.2 Récupération du Code Source</h2>
+
+    <h3>Option A : Via Git (Recommandé)</h3>
+    <pre><code># Ouvrir un terminal dans le répertoire htdocs de XAMPP
+cd C:\xampp\htdocs
+
+# Cloner le repository
+git clone https://github.com/rayague/foo-link.git
+
+# Accéder au dossier
+cd foo-link</code></pre>
+
+    <h3>Option B : Téléchargement Direct</h3>
+    <ol>
+        <li>Téléchargez le ZIP depuis GitHub</li>
+        <li>Extrayez le contenu dans <code>C:\xampp\htdocs\foo-link</code></li>
+    </ol>
+
+    <h2>6.3 Configuration de la Base de Données</h2>
+
+    <h3>Étape 1 : Accès à phpMyAdmin</h3>
+    <ol>
+        <li>Ouvrez votre navigateur</li>
+        <li>Accédez à <strong>http://localhost/phpmyadmin</strong></li>
+        <li>Connectez-vous (par défaut : utilisateur <code>root</code>, mot de passe vide)</li>
+    </ol>
+
+    <h3>Étape 2 : Création de la Base de Données</h3>
+    <ol>
+        <li>Cliquez sur l'onglet <strong>SQL</strong></li>
+        <li>Copiez-collez le script SQL suivant :</li>
+    </ol>
+
+    <pre><code>CREATE DATABASE IF NOT EXISTS foo_link 
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_unicode_ci;
+
+USE foo_link;</code></pre>
+
+    <h3>Étape 3 : Import du Schéma</h3>
+    <ol>
+        <li>Sélectionnez la base <code>foo_link</code> dans la liste de gauche</li>
+        <li>Cliquez sur l'onglet <strong>Importer</strong></li>
+        <li>Cliquez sur <strong>Choisir un fichier</strong></li>
+        <li>Sélectionnez le fichier <code>database_schema.sql</code> du projet</li>
+        <li>Cliquez sur <strong>Exécuter</strong></li>
+    </ol>
+
+    <div class="alert alert-success">
+        <strong>✅ Succès :</strong> Vous devriez voir le message "Import réussi" et les tables créées dans la liste de gauche.
+    </div>
+
+    <h3>Étape 4 : Vérification</h3>
+    <p>Vérifiez que les tables suivantes ont été créées :</p>
+    <ul>
+        <li>✅ users</li>
+        <li>✅ recettes</li>
+        <li>✅ commentaires</li>
+        <li>✅ likes</li>
+        <li>✅ categories</li>
+    </ul>
+
+    <!-- CONFIGURATION -->
+    <div class="page-break"></div>
+    <h1 id="configuration">7. ⚙️ Configuration</h1>
+
+    <h2>7.1 Configuration de la Base de Données</h2>
+
+    <p>Le fichier de configuration se trouve dans <code>config/config.php</code> :</p>
+
+    <pre><code>&lt;?php
+$host = 'localhost';
+$db = 'foo_link';
+$user = 'root';
+$pass = '';  // Mot de passe vide par défaut avec XAMPP
+$charset = 'utf8';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$opt = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,
+];
+
+try {
+    $cnx = new PDO($dsn, $user, $pass, $opt);
+} catch(PDOException $e) {
+    die('Connection failed: '. $e->getMessage());
+}
+?&gt;</code></pre>
+
+    <div class="alert alert-warning">
+        <strong>⚠️ Sécurité :</strong> En production, changez le mot de passe de la base de données et mettez à jour ce fichier.
+    </div>
+
+    <h2>7.2 Configuration PHP</h2>
+
+    <p>Vérifiez le fichier <code>php.ini</code> (accessible via XAMPP Control Panel → Config) :</p>
+
+    <pre><code>; Taille maximale des uploads (pour les futures images)
+upload_max_filesize = 10M
+post_max_size = 10M
+
+; Affichage des erreurs (développement uniquement)
+display_errors = On
+error_reporting = E_ALL
+
+; Sessions
+session.cookie_httponly = 1
+session.use_strict_mode = 1</code></pre>
+
+    <h2>7.3 Configuration Apache</h2>
+
+    <p>Le fichier <code>.htaccess</code> (si présent) devrait contenir :</p>
+
+    <pre><code>RewriteEngine On
+RewriteBase /foo-link/
+
+# Redirection des erreurs
+ErrorDocument 404 /foo-link/index.php
+
+# Protection des fichiers sensibles
+&lt;FilesMatch "^(config\.php|database_schema\.sql)$"&gt;
+    Order allow,deny
+    Deny from all
+&lt;/FilesMatch&gt;</code></pre>
+
+    <h2>7.4 Permissions des Fichiers</h2>
+
+    <h3>Windows (XAMPP)</h3>
+    <p>Généralement, aucune modification nécessaire. Les permissions sont gérées automatiquement.</p>
+
+    <h3>Linux/Mac</h3>
+    <pre><code># Définir les bonnes permissions
+chmod -R 755 /xampp/htdocs/foo-link
+chmod -R 777 /xampp/htdocs/foo-link/assets/images</code></pre>
+
+    <!-- UTILISATION -->
+    <div class="page-break"></div>
+    <h1 id="utilisation">8. 📱 Guide d'Utilisation</h1>
+
+    <h2>8.1 Accès à l'Application</h2>
+
+    <h3>URL d'Accès</h3>
+    <p>Ouvrez votre navigateur et accédez à :</p>
+    <pre><code>http://localhost/foo-link/index.php</code></pre>
+
+    <div class="alert alert-info">
+        <strong>💡 Astuce :</strong> Vous pouvez créer un raccourci dans vos favoris pour un accès rapide.
+    </div>
+
+    <h2>8.2 Première Utilisation</h2>
+
+    <h3>Étape 1 : Création de Compte</h3>
+    <ol>
+        <li>Cliquez sur <strong>"Inscription"</strong> dans la navbar</li>
+        <li>Remplissez le formulaire :
+            <ul>
+                <li>Email valide</li>
+                <li>Mot de passe (min. 6 caractères)</li>
+                <li>Prénom</li>
+                <li>Nom</li>
+            </ul>
+        </li>
+        <li>Cliquez sur <strong>"S'inscrire"</strong></li>
+    </ol>
+
+    <h3>Étape 2 : Connexion</h3>
+    <ol>
+        <li>Après inscription, vous êtes redirigé vers la page de connexion</li>
+        <li>Entrez votre email et mot de passe</li>
+        <li>Cliquez sur <strong>"Se connecter"</strong></li>
+        <li>Vous êtes redirigé vers le tableau de bord</li>
+    </ol>
+
+    <h2>8.3 Gestion des Recettes</h2>
+
+    <h3>Ajouter une Recette</h3>
+    <ol>
+        <li>Accédez au dashboard via la navbar</li>
+        <li>Cliquez sur <strong>"Recettes"</strong> dans le menu latéral</li>
+        <li>Cliquez sur <strong>"+ Ajouter une recette"</strong></li>
+        <li>Remplissez le formulaire :
+            <ul>
+                <li><strong>Titre</strong> : Nom de la recette</li>
+                <li><strong>Description</strong> : Instructions détaillées</li>
+                <li><strong>Catégorie</strong> : Choisir dans la liste déroulante</li>
+            </ul>
+        </li>
+        <li>Cliquez sur <strong>"Ajouter"</strong></li>
+    </ol>
+
+    <h3>Modifier une Recette</h3>
+    <ol>
+        <li>Dans la liste des recettes du dashboard</li>
+        <li>Cliquez sur l'icône <strong>"✏️ Modifier"</strong></li>
+        <li>Modifiez les informations souhaitées</li>
+        <li>Cliquez sur <strong>"Sauvegarder"</strong></li>
+    </ol>
+
+    <h3>Supprimer une Recette</h3>
+    <ol>
+        <li>Dans la liste des recettes</li>
+        <li>Cliquez sur <strong>"🗑️ Supprimer"</strong></li>
+        <li>Confirmez la suppression</li>
+    </ol>
+
+    <h2>8.4 Interactions Sociales</h2>
+
+    <h3>Liker une Recette</h3>
+    <ol>
+        <li>Ouvrez une recette en cliquant dessus</li>
+        <li>Cliquez sur le bouton <strong>"❤️ J'aime"</strong></li>
+        <li>Le compteur de likes s'incrémente</li>
+        <li>Recliquez pour retirer votre like</li>
+    </ol>
+
+    <h3>Commenter une Recette</h3>
+    <ol>
+        <li>Ouvrez une recette</li>
+        <li>Scrollez jusqu'à la section commentaires</li>
+        <li>Entrez votre commentaire dans la zone de texte</li>
+        <li>Cliquez sur <strong>"Publier"</strong></li>
+    </ol>
+
+    <h2>8.5 Recherche</h2>
+
+    <h3>Recherche Globale</h3>
+    <ol>
+        <li>Utilisez la barre de recherche dans la navbar</li>
+        <li>Tapez votre recherche (titre ou ingrédient)</li>
+        <li>Les suggestions apparaissent en temps réel</li>
+        <li>Cliquez sur une suggestion ou appuyez sur Entrée</li>
+    </ol>
+
+    <h3>Recherche Avancée</h3>
+    <ol>
+        <li>Accédez à la page <strong>"Recettes"</strong></li>
+        <li>Utilisez les filtres disponibles</li>
+        <li>Parcourez les résultats paginés</li>
+    </ol>
+
+    <!-- SÉCURITÉ -->
+    <div class="page-break"></div>
+    <h1 id="securite">9. 🔒 Sécurité</h1>
+
+    <h2>9.1 Mesures de Sécurité Implémentées</h2>
+
+    <h3>Protection contre les Injections SQL</h3>
+    <ul>
+        <li>✅ Utilisation exclusive de requêtes préparées PDO</li>
+        <li>✅ Paramètres bindés avec types explicites</li>
+        <li>✅ Pas de concaténation directe de variables dans les requêtes</li>
+    </ul>
+
+    <div class="alert alert-success">
+        <strong>Exemple :</strong>
+        <pre><code>$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->execute([$email]);</code></pre>
+    </div>
+
+    <h3>Protection contre les Attaques XSS</h3>
+    <ul>
+        <li>✅ Utilisation de <code>htmlspecialchars()</code> sur toutes les sorties</li>
+        <li>✅ Validation des données en entrée</li>
+        <li>✅ Échappement des attributs HTML</li>
+    </ul>
+
+    <h3>Protection CSRF</h3>
+    <ul>
+        <li>✅ Génération de tokens CSRF uniques par session</li>
+        <li>✅ Validation des tokens sur tous les formulaires POST</li>
+        <li>✅ Helper dédié : <code>helpers/csrf.php</code></li>
+    </ul>
+
+    <h3>Gestion des Mots de Passe</h3>
+    <ul>
+        <li>✅ Hachage avec <code>password_hash()</code> (bcrypt)</li>
+        <li>✅ Vérification avec <code>password_verify()</code></li>
+        <li>✅ Pas de stockage en clair</li>
+        <li>✅ Politique de mot de passe minimum (6 caractères)</li>
+    </ul>
+
+    <h3>Gestion des Sessions</h3>
+    <ul>
+        <li>✅ Sessions PHP natives sécurisées</li>
+        <li>✅ Vérification de l'authentification avant actions sensibles</li>
+        <li>✅ Destruction complète à la déconnexion</li>
+    </ul>
+
+    <h2>9.2 Recommandations pour la Production</h2>
+
+    <div class="alert alert-danger">
+        <strong>⚠️ IMPORTANT :</strong> Avant de déployer en production, appliquez ces modifications critiques :
+    </div>
+
+    <ol>
+        <li><strong>Désactiver l'affichage des erreurs</strong>
+            <pre><code>display_errors = Off
+error_reporting = E_ALL
+log_errors = On</code></pre>
+        </li>
+        
+        <li><strong>Changer les credentials de la base de données</strong>
+            <pre><code>$user = 'nouveau_user';
+$pass = 'mot_de_passe_fort';</code></pre>
+        </li>
+        
+        <li><strong>Activer HTTPS</strong>
+            <ul>
+                <li>Obtenir un certificat SSL</li>
+                <li>Forcer la redirection HTTPS</li>
+                <li>Utiliser <code>session.cookie_secure = 1</code></li>
+            </ul>
+        </li>
+        
+        <li><strong>Renforcer la politique de mots de passe</strong>
+            <ul>
+                <li>Minimum 8-12 caractères</li>
+                <li>Exiger majuscules, minuscules, chiffres, symboles</li>
+                <li>Implémenter un système de récupération sécurisé</li>
+            </ul>
+        </li>
+        
+        <li><strong>Implémenter un système de limitation de taux (Rate Limiting)</strong>
+            <ul>
+                <li>Limiter les tentatives de connexion</li>
+                <li>Protéger contre les attaques par force brute</li>
+            </ul>
+        </li>
+        
+        <li><strong>Ajouter des headers de sécurité</strong>
+            <pre><code>header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");</code></pre>
+        </li>
+    </ol>
+
+    <!-- STRUCTURE -->
+    <div class="page-break"></div>
+    <h1 id="structure">10. 📂 Structure des Fichiers</h1>
+
+    <pre style="font-size: 12px;"><code>foo-link/
+├── 📁 api/
+│   └── recipes.php              # API REST pour les recettes
+│
+├── 📁 assets/
+│   ├── 📁 css/
+│   │   └── dashboard_style.css  # Styles du dashboard
+│   ├── 📁 images/              # Images du site
+│   └── 📁 scripts/             # Scripts JavaScript
+│
+├── 📁 config/
+│   └── config.php              # Configuration base de données
+│
+├── 📁 controllers/
+│   ├── CategorieController.php
+│   ├── CommentaireController.php
+│   ├── ConnexionController.php
+│   ├── inscriptionController.php
+│   ├── LikeController.php
+│   ├── ProfilController.php
+│   ├── RecetteController.php
+│   └── StatController.php
+│
+├── 📁 helpers/
+│   └── csrf.php                # Fonctions CSRF
+│
+├── 📁 models/
+│   ├── Categorie.php
+│   ├── Commentaire.php
+│   ├── Database.php            # Classe PDO parent
+│   ├── Like.php
+│   ├── Recette.php
+│   ├── User.php
+│   └── Utilisateur.php
+│
+├── 📁 services/
+│   └── StatService.php         # Service de statistiques
+│
+├── 📁 views/
+│   ├── 📁 dashboard/
+│   │   ├── categories.php
+│   │   ├── commentaires.php
+│   │   ├── index.php           # Dashboard principal
+│   │   ├── profil.php
+│   │   ├── recettes.php
+│   │   └── 📁 partials/
+│   │       └── stats.php
+│   │
+│   ├── 📁 partials/
+│   │   ├── dashboard_sidebar.php
+│   │   ├── footer.php
+│   │   ├── head.php
+│   │   └── navbar.php
+│   │
+│   ├── ajout.php
+│   ├── apropos.php
+│   ├── connexion.php
+│   ├── contact.php
+│   ├── inscription.php
+│   ├── recette.php
+│   └── recettes.php
+│
+├── apropos.php                 # Page À propos
+├── connexion.php               # Page de connexion
+├── contact.php                 # Page de contact
+├── database_schema.sql         # Schéma SQL
+├── index.php                   # Page d'accueil
+├── inscription.php             # Page d'inscription
+├── logout.php                  # Script de déconnexion
+├── recette.php                 # Détail d'une recette
+├── recettes.php                # Liste des recettes
+└── README.md                   # Documentation
+</code></pre>
+
+    <!-- API -->
+    <div class="page-break"></div>
+    <h1 id="api">11. 🔌 API Documentation</h1>
+
+    <h2>11.1 Endpoints Disponibles</h2>
+
+    <h3>GET /api/recipes.php</h3>
+    <p><strong>Description :</strong> Récupère la liste paginée des recettes</p>
+
+    <p><strong>Paramètres de requête :</strong></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Paramètre</th>
+                <th>Type</th>
+                <th>Obligatoire</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>page</code></td>
+                <td>integer</td>
+                <td>Non</td>
+                <td>Numéro de page (défaut: 1)</td>
+            </tr>
+            <tr>
+                <td><code>per_page</code></td>
+                <td>integer</td>
+                <td>Non</td>
+                <td>Nombre par page (défaut: 9, max: 50)</td>
+            </tr>
+            <tr>
+                <td><code>search</code></td>
+                <td>string</td>
+                <td>Non</td>
+                <td>Terme de recherche</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Exemple de requête :</strong></p>
+    <pre><code>GET /api/recipes.php?page=1&per_page=10&search=chocolat</code></pre>
+
+    <p><strong>Réponse (JSON) :</strong></p>
+    <pre><code>{
+    "page": 1,
+    "per_page": 10,
+    "total": 45,
+    "total_pages": 5,
+    "data": [
+        {
+            "id": 1,
+            "titre": "Gâteau au chocolat",
+            "description": "Un délicieux gâteau...",
+            "vues": 152,
+            "created_at": "2025-12-01 10:30:00",
+            "categorie_id": 3,
+            "user_id": 5
+        },
+        ...
+    ]
+}</code></pre>
+
+    <h2>11.2 Codes de Statut HTTP</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>200 OK</code></td>
+                <td>Requête réussie</td>
+            </tr>
+            <tr>
+                <td><code>400 Bad Request</code></td>
+                <td>Paramètres invalides</td>
+            </tr>
+            <tr>
+                <td><code>404 Not Found</code></td>
+                <td>Ressource non trouvée</td>
+            </tr>
+            <tr>
+                <td><code>500 Internal Server Error</code></td>
+                <td>Erreur serveur</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- PROBLÈMES CONNUS -->
+    <div class="page-break"></div>
+    <h1 id="problemes">12. ⚠️ Problèmes Connus et Limitations</h1>
+
+    <div class="alert alert-warning">
+        <strong>Note :</strong> Cette section répertorie les fonctionnalités non implémentées ou non fonctionnelles actuellement dans le projet.
+    </div>
+
+    <h2>12.1 Fonctionnalités Non Implémentées</h2>
+
+    <h3>🔴 Critiques</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Fonctionnalité</th>
+                <th>État</th>
+                <th>Description du Problème</th>
+                <th>Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Upload d'images</strong></td>
+                <td><span class="badge badge-danger">Non implémenté</span></td>
+                <td>Les recettes ne peuvent pas avoir d'images. Une image fixe (<code>pie-8396728_1280.jpg</code>) est utilisée pour toutes les recettes.</td>
+                <td>Limite l'attractivité visuelle et l'expérience utilisateur</td>
+            </tr>
+            <tr>
+                <td><strong>Gestion des permissions</strong></td>
+                <td><span class="badge badge-danger">Non fonctionnel</span></td>
+                <td>N'importe quel utilisateur connecté peut modifier ou supprimer n'importe quelle recette, même s'il n'en est pas l'auteur.</td>
+                <td>Sécurité compromise, risque de vandalisme</td>
+            </tr>
+            <tr>
+                <td><strong>Protection CSRF complète</strong></td>
+                <td><span class="badge badge-danger">Partiel</span></td>
+                <td>
+                    Les contrôleurs suivants n'ont pas de validation CSRF :
+                    <ul style="margin: 5px 0 0 20px;">
+                        <li><code>LikeController.php</code></li>
+                        <li><code>CommentaireController.php</code></li>
+                        <li><code>RecetteController.php</code></li>
+                        <li><code>CategorieController.php</code></li>
+                    </ul>
+                </td>
+                <td>Vulnérabilité aux attaques CSRF</td>
+            </tr>
+            <tr>
+                <td><strong>Transactions base de données</strong></td>
+                <td><span class="badge badge-danger">Non implémenté</span></td>
+                <td>La suppression d'une recette ne supprime pas les likes et commentaires associés, créant des enregistrements orphelins.</td>
+                <td>Intégrité des données compromise</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>🟠 Importantes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Fonctionnalité</th>
+                <th>État</th>
+                <th>Description du Problème</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Système de notifications</strong></td>
+                <td><span class="badge badge-warning">Non fonctionnel</span></td>
+                <td>Le bouton de notification (🔔) dans la navbar est présent mais n'a aucune fonctionnalité backend associée.</td>
+            </tr>
+            <tr>
+                <td><strong>Filtrage par catégories</strong></td>
+                <td><span class="badge badge-warning">Non fonctionnel</span></td>
+                <td>Les liens de catégories sur la page d'accueil (Entrées, Plats, Desserts, Boissons) utilisent des paramètres GET qui ne sont pas gérés par le backend.</td>
+            </tr>
+            <tr>
+                <td><strong>Récupération de mot de passe</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Aucun système de "Mot de passe oublié" n'est disponible. Les utilisateurs ne peuvent pas récupérer leur compte.</td>
+            </tr>
+            <tr>
+                <td><strong>Vérification d'email</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Les utilisateurs peuvent s'inscrire avec n'importe quel email sans vérification. Risque de faux comptes.</td>
+            </tr>
+            <tr>
+                <td><strong>Pagination des commentaires</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Tous les commentaires sont chargés d'un coup, sans limite. Risque de problèmes de performance.</td>
+            </tr>
+            <tr>
+                <td><strong>Système de rating (étoiles)</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Seul le système de likes existe. Pas de notation détaillée par étoiles (1-5).</td>
+            </tr>
+            <tr>
+                <td><strong>Validation stricte des entrées</strong></td>
+                <td><span class="badge badge-warning">Faible</span></td>
+                <td>
+                    <ul style="margin: 5px 0 0 20px;">
+                        <li>Pas de limite de longueur pour titre/description</li>
+                        <li>Pas de sanitization HTML complète</li>
+                        <li>Validation email basique uniquement</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>🟡 Mineures</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Fonctionnalité</th>
+                <th>État</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Avatars utilisateur</strong></td>
+                <td><span class="badge badge-warning">Non fonctionnel</span></td>
+                <td>Les utilisateurs ne peuvent pas uploader d'avatar. Un placeholder est utilisé.</td>
+            </tr>
+            <tr>
+                <td><strong>Messages de confirmation</strong></td>
+                <td><span class="badge badge-warning">Incomplet</span></td>
+                <td>Pas de messages de succès/erreur après la plupart des actions (ajout, modification, suppression).</td>
+            </tr>
+            <tr>
+                <td><strong>Recherche avancée</strong></td>
+                <td><span class="badge badge-warning">Limitée</span></td>
+                <td>La recherche fonctionne uniquement sur titre et description. Pas de filtres par catégorie, auteur, date, etc.</td>
+            </tr>
+            <tr>
+                <td><strong>Statistiques dashboard</strong></td>
+                <td><span class="badge badge-warning">Basiques</span></td>
+                <td>Les statistiques sont très simples. Pas de graphiques, d'évolution temporelle ou d'analytics avancées.</td>
+            </tr>
+            <tr>
+                <td><strong>Système de tags</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Impossible d'ajouter des tags (ex: "végétarien", "sans gluten") aux recettes.</td>
+            </tr>
+            <tr>
+                <td><strong>Favoris/Bookmarks</strong></td>
+                <td><span class="badge badge-warning">Non implémenté</span></td>
+                <td>Les utilisateurs ne peuvent pas sauvegarder leurs recettes préférées.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>12.2 Problèmes Techniques</h2>
+
+    <h3>Code et Architecture</h3>
+    <ul>
+        <li><strong>Code dupliqué</strong>
+            <ul>
+                <li>Connexion PDO répétée dans plusieurs fichiers (index.php, etc.)</li>
+                <li>Gestion de <code>$root</code> dupliquée dans chaque fichier</li>
+                <li>3 versions de la page d'accueil : <code>index.php</code>, <code>index_old.php</code>, <code>index_modern.php</code></li>
+            </ul>
+        </li>
+        
+        <li><strong>Gestion des erreurs incohérente</strong>
+            <ul>
+                <li><code>display_errors</code> activé dans inscriptionController.php (dangereux en production)</li>
+                <li>Messages d'erreur affichés avec <code>echo</code> au lieu de templates</li>
+                <li>Pas de logging centralisé</li>
+            </ul>
+        </li>
+        
+        <li><strong>Redirections problématiques</strong>
+            <ul>
+                <li>CommentaireController redirige vers un chemin incorrect après suppression</li>
+                <li>Redirections relatives non cohérentes</li>
+            </ul>
+        </li>
+        
+        <li><strong>Requêtes SQL non optimisées</strong>
+            <ul>
+                <li>Potentiels problèmes N+1 dans certaines pages</li>
+                <li>Pas d'index sur toutes les clés étrangères</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Sécurité</h3>
+    <ul>
+        <li><strong>Mot de passe base de données vide</strong> en <code>config.php</code></li>
+        <li><strong>Pas de protection rate-limiting</strong> contre les attaques par force brute</li>
+        <li><strong>Pas de régénération d'ID de session</strong> après login</li>
+        <li><strong>Pas de timeout de session</strong></li>
+        <li><strong>Headers de sécurité manquants</strong> (X-Frame-Options, CSP, etc.)</li>
+    </ul>
+
+    <h3>Performance</h3>
+    <ul>
+        <li><strong>Aucun système de cache</strong> (Redis, Memcached)</li>
+        <li><strong>Pas de lazy loading</strong> des images</li>
+        <li><strong>Pas de compression</strong> des assets (CSS/JS non minifiés)</li>
+        <li><strong>Pas de CDN</strong> pour les ressources statiques</li>
+    </ul>
+
+    <h3>UX/UI</h3>
+    <ul>
+        <li><strong>Design inconsistant</strong>
+            <ul>
+                <li>Page d'accueil avec design moderne glassmorphism</li>
+                <li>Pages apropos.php et contact.php avec ancien design</li>
+            </ul>
+        </li>
+        
+        <li><strong>Responsive incomplet</strong>
+            <ul>
+                <li>Certains éléments dashboard mal adaptés sur mobile</li>
+                <li>Menu mobile pourrait être amélioré</li>
+            </ul>
+        </li>
+        
+        <li><strong>Accessibilité limitée</strong>
+            <ul>
+                <li>Attributs ARIA manquants sur plusieurs éléments</li>
+                <li>Contraste des couleurs parfois insuffisant</li>
+                <li>Navigation au clavier incomplete</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>12.3 Workarounds Temporaires</h2>
+
+    <div class="alert alert-info">
+        En attendant l'implémentation complète, voici quelques solutions temporaires :
+    </div>
+
+    <h3>Pour les permissions</h3>
+    <pre><code>// Solution temporaire : vérifier l'ownership manuellement
+if ($_SESSION['user_id'] !== $recette['user_id']) {
+    die('Vous ne pouvez pas modifier cette recette');
+}</code></pre>
+
+    <h3>Pour les images</h3>
+    <pre><code>// Utiliser des services externes temporairement
+&lt;img src="https://via.placeholder.com/400x300?text=<?= urlencode($recette['titre']) ?>"&gt;</code></pre>
+
+    <h3>Pour les catégories</h3>
+    <pre><code>// Ajouter dans RecetteController.php
+$categorie = $_GET['categorie'] ?? '';
+if ($categorie) {
+    $recettes = $this->recetteModel->getByCategorie($categorie);
+}</code></pre>
+
+    <h2>12.4 Recommandations Immédiates</h2>
+
+    <div class="alert alert-danger">
+        <strong>À faire IMMÉDIATEMENT avant toute utilisation en production :</strong>
+    </div>
+
+    <ol>
+        <li><span class="badge badge-danger">Critique</span> Implémenter la vérification de propriété (ownership)</li>
+        <li><span class="badge badge-danger">Critique</span> Ajouter la protection CSRF sur tous les contrôleurs</li>
+        <li><span class="badge badge-danger">Critique</span> Changer le mot de passe de la base de données</li>
+        <li><span class="badge badge-danger">Critique</span> Désactiver l'affichage des erreurs PHP</li>
+        <li><span class="badge badge-warning">Important</span> Implémenter les transactions pour les suppressions</li>
+        <li><span class="badge badge-warning">Important</span> Ajouter une validation stricte des entrées</li>
+        <li><span class="badge badge-warning">Important</span> Corriger les liens de catégories</li>
+        <li><span class="badge badge-success">Recommandé</span> Nettoyer les fichiers dupliqués (index_old, index_modern)</li>
+    </ol>
+
+    <!-- AMÉLIORATIONS -->
+    <div class="page-break"></div>
+    <h1 id="ameliorations">13. 🚀 Améliorations Futures</h1>
+
+    <h2>13.1 Priorité Haute 🔴</h2>
+    <ol>
+        <li><strong>Système d'upload d'images</strong>
+            <ul>
+                <li>Upload de photos pour les recettes</li>
+                <li>Redimensionnement automatique</li>
+                <li>Stockage optimisé</li>
+            </ul>
+        </li>
+        
+        <li><strong>Gestion des permissions</strong>
+            <ul>
+                <li>Vérification de propriété avant modification/suppression</li>
+                <li>Système de rôles (admin, modérateur, utilisateur)</li>
+                <li>Permissions granulaires</li>
+            </ul>
+        </li>
+        
+        <li><strong>Protection CSRF complète</strong>
+            <ul>
+                <li>Ajouter validation CSRF sur tous les contrôleurs</li>
+                <li>LikeController, CommentaireController, etc.</li>
+            </ul>
+        </li>
+        
+        <li><strong>Système de catégories fonctionnel</strong>
+            <ul>
+                <li>Filtrage par catégorie opérationnel</li>
+                <li>Pages dédiées par catégorie</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>13.2 Priorité Moyenne 🟡</h2>
+    <ol>
+        <li><strong>Système de notation par étoiles</strong></li>
+        <li><strong>Favoris/Bookmarks</strong></li>
+        <li><strong>Pagination des commentaires</strong></li>
+        <li><strong>Recherche avancée (filtres multiples)</strong></li>
+        <li><strong>Système de tags</strong></li>
+        <li><strong>Partage sur réseaux sociaux</strong></li>
+        <li><strong>Statistiques avancées avec graphiques</strong></li>
+        <li><strong>Système de notifications</strong></li>
+    </ol>
+
+    <h2>13.3 Priorité Basse 🟢</h2>
+    <ol>
+        <li><strong>Vérification d'email à l'inscription</strong></li>
+        <li><strong>Récupération de mot de passe par email</strong></li>
+        <li><strong>Système de followers/following</strong></li>
+        <li><strong>Messagerie privée entre utilisateurs</strong></li>
+        <li><strong>Thème clair/sombre switchable</strong></li>
+        <li><strong>Support multilingue (i18n)</strong></li>
+        <li><strong>Application mobile (React Native/Flutter)</strong></li>
+        <li><strong>API REST complète avec authentification JWT</strong></li>
+    </ol>
+
+    <h2>13.4 Optimisations Techniques</h2>
+    <ul>
+        <li>Mise en cache (Redis/Memcached)</li>
+        <li>Optimisation des requêtes SQL</li>
+        <li>Lazy loading des images</li>
+        <li>CDN pour les assets statiques</li>
+        <li>Compression Gzip</li>
+        <li>Minification CSS/JS</li>
+        <li>Tests unitaires et d'intégration</li>
+        <li>CI/CD avec GitHub Actions</li>
+        <li>Containerisation (Docker)</li>
+    </ul>
+
+    <!-- FOOTER -->
+    <div class="page-break"></div>
+    <div style="text-align: center; padding: 50px 0; color: #667eea;">
+        <h2>📧 Contact & Support</h2>
+        <p style="margin: 20px 0;">
+            <strong>GitHub:</strong> <a href="https://github.com/rayague/foo-link" style="color: #667eea;">github.com/rayague/foo-link</a>
+        </p>
+        <p style="margin: 20px 0;">
+            <strong>Repository:</strong> rayague/foo-link
+        </p>
+        
+        <hr style="margin: 40px 0; border: 1px solid #e0e0e0;">
+        
+        <p style="font-size: 14px; color: #888;">
+            Documentation générée le 17 Décembre 2025<br>
+            Version du projet : 1.0.0<br>
+            Foo-Link © 2025 - Tous droits réservés
+        </p>
+        
+        <div style="margin-top: 40px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+            <h3>✨ Merci d'utiliser Foo-Link !</h3>
+            <p>Partagez vos recettes, inspirez la communauté</p>
+        </div>
+    </div>
+
+    <script>
+        // Script pour impression PDF
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter un bouton d'impression
+            const printBtn = document.createElement('button');
+            printBtn.textContent = '🖨️ Imprimer en PDF';
+            printBtn.className = 'no-print';
+            printBtn.style.cssText = 'position: fixed; top: 20px; right: 20px; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); z-index: 1000;';
+            
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+            
+            document.body.appendChild(printBtn);
+        });
+    </script>
+</body>
+</html>

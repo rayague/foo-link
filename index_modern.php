@@ -28,17 +28,6 @@ $topUsers = $userModel->getTopContributeurs(5);
 <head>
     <?php include __DIR__ . '/views/partials/head.php'; ?>
     <style>
-        /* Force navbar text to be white - override dashboard_style.css */
-        #glassNav a, #glassNav .nav-link, #glassNav .nav-glass-link, #glassNav .mobile-link {
-            color: white !important;
-        }
-        #glassNav a:hover {
-            color: #c084fc !important; /* purple-400 */
-        }
-        #glassNav .text-white {
-            color: white !important;
-        }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
@@ -164,6 +153,7 @@ $topUsers = $userModel->getTopContributeurs(5);
             </svg>
         </div>
     </section>
+
     <!-- RECETTES POPULAIRES -->
     <section class="py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -218,6 +208,7 @@ $topUsers = $userModel->getTopContributeurs(5);
             </div>
         </div>
     </section>
+
     <!-- TOP CONTRIBUTEURS -->
     <section class="py-24 bg-gradient-to-br from-purple-950 via-slate-900 to-blue-950 relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAgMi4yMS0xLjc5IDQtNCA0cy00LTEuNzktNC00IDEuNzktNCA0LTQgNCAxLjc5IDQgNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
@@ -258,6 +249,7 @@ $topUsers = $userModel->getTopContributeurs(5);
             </div>
         </div>
     </section>
+
     <!-- CATEGORIES -->
     <section class="py-24 bg-slate-950">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -299,28 +291,52 @@ $topUsers = $userModel->getTopContributeurs(5);
             </div>
         </div>
     </section>
-    <!-- SECTION AVIS RECENTS -->
-    <section class="py-16 bg-gray-950 text-white">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8">Avis récents</h2>
+
+    <!-- AVIS RECENTS -->
+    <section class="py-24 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">Avis Récents</span>
+                </h2>
+                <p class="text-gray-400 text-lg">Ce que notre communauté partage</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($lastComments as $comment): ?>
-                <div class="bg-white/10 rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center text-lg font-bold text-blue-700">
-                            <?php echo strtoupper(substr($comment['user_firstname'],0,1)) . strtoupper(substr($comment['user_lastname'],0,1)); ?>
+                <div class="card-hover glass-card rounded-3xl p-8 group">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-lg font-bold text-white shadow-lg">
+                                <?php echo strtoupper(substr($comment['user_firstname'],0,1)) . strtoupper(substr($comment['user_lastname'],0,1)); ?>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900"></div>
                         </div>
-                        <div class="font-semibold"><?php echo htmlspecialchars($comment['user_firstname'] . ' ' . $comment['user_lastname']); ?></div>
-                        <span class="text-xs text-blue-200 ml-auto"><?php echo date('d/m/Y', strtotime($comment['created_at'])); ?></span>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-white">
+                                <?php echo htmlspecialchars($comment['user_firstname'] . ' ' . $comment['user_lastname']); ?>
+                            </h4>
+                            <span class="text-xs text-gray-500"><?php echo date('d/m/Y', strtotime($comment['created_at'])); ?></span>
+                        </div>
+                        <div class="text-2xl opacity-50">💬</div>
                     </div>
-                    <div class="text-blue-100 italic mb-2">« <?php echo htmlspecialchars($comment['contenu']); ?> »</div>
-                    <div class="text-xs text-blue-300">Sur la recette : <span class="font-semibold text-blue-400"><?php echo htmlspecialchars($comment['recette_titre']); ?></span>
+                    
+                    <p class="text-gray-300 italic mb-4 leading-relaxed">
+                        « <?php echo htmlspecialchars($comment['contenu']); ?> »
+                    </p>
+                    
+                    <div class="flex items-center gap-2 text-sm">
+                        <span class="text-gray-500">Sur</span>
+                        <span class="font-semibold text-purple-400">
+                            <?php echo htmlspecialchars($comment['recette_titre']); ?>
+                        </span>
                     </div>
                 </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </section>
+
     <?php include __DIR__ . '/views/partials/footer.php'; ?>
 </body>
 

@@ -38,7 +38,25 @@ class RecetteController {
         include __DIR__ . '/../views/recette.php';
     }
     public function create($data) {
-        $this->recetteModel->create($data['titre'], $data['description'], $data['categorie_id'], $data['user_id']);
+        // Prefer the currently logged-in user; fall back to provided user_id if set
+        $user_id = null;
+        if (!empty($data['user_id'])) {
+            $user_id = (int)$data['user_id'];
+        }
+        if (isset($_SESSION['user_id'])) {
+            $user_id = (int)$_SESSION['user_id'];
+        }
+
+        // Verify user exists to avoid FK constraint errors
+        require_once __DIR__ . '/../models/User.php';
+        $userModel = new User();
+        if ($user_id === null || !$userModel->getById($user_id)) {
+            // Redirect back with an error if there's no valid user
+            header('Location: ../views/dashboard/recettes.php?error=missing_user');
+            exit;
+        }
+
+        $this->recetteModel->create($data['titre'], $data['description'], $data['categorie_id'], $user_id);
         header('Location: ../views/dashboard/recettes.php');
         exit;
     }

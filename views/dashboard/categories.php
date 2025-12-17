@@ -11,7 +11,7 @@
 </head>
 
 <body class="site-dark">
-    <?php include __DIR__ . '/../partials/navbar.php'; ?>
+    
 
     <div class="w-full px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex gap-6">

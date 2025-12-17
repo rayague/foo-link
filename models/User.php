@@ -49,9 +49,9 @@ class User extends Database
             $id
         ]);
     }
-}
     // Récupère les top contributeurs (utilisateurs ayant posté le plus de recettes)
-    public function getTopContributeurs($limit = 5) {
+    public function getTopContributeurs($limit = 5)
+    {
         $sql = "SELECT u.id, u.firstname, u.lastname, COUNT(r.id) as nb_recettes FROM users u LEFT JOIN recettes r ON u.id = r.user_id GROUP BY u.id, u.firstname, u.lastname ORDER BY nb_recettes DESC LIMIT ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);

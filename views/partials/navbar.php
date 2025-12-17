@@ -17,12 +17,12 @@ if (!isset($root)) {
 $currentFile = basename($_SERVER['SCRIPT_NAME']);
 ?>
 
-<nav id="glassNav" role="navigation" aria-label="Main navigation" class="glass-nav-bg backdrop-blur-md fixed w-full z-50 shadow-2xl shadow-blue-900/50 text-white border-zb border-blue-400/30" style="background:linear-gradient(90deg, rgba(8,16,32,0.85), rgba(6,10,30,0.85)); color: #ffffff;">
+<nav id="glassNav" role="navigation" aria-label="Main navigation" class="fixed w-full z-50 text-white" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139, 92, 246, 0.3); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center" 
+        <div class="flex justify-between h-16 items-center">
 
             <div class="flex items-center gap-3">
-                <a href="<?= $root ?>/index.php" class="flex items-center gap-3">
+                <a href="<?= $root ?>/index.php" class="flex items-center gap-3 group">
                     <?php
                     $logoFile = __DIR__ . '/../../assets/images/logo-48.png';
                     if (file_exists($logoFile)) {
@@ -32,58 +32,59 @@ $currentFile = basename($_SERVER['SCRIPT_NAME']);
                     }
                     ?>
                     <img src="<?= $logoSrc ?>"
-                        class="w-10 h-10 rounded-md object-cover ring-2 ring-blue-300/50"
+                        class="w-10 h-10 rounded-lg object-cover ring-2 ring-purple-500/50 group-hover:ring-purple-400 transition-all"
                         onerror="this.src='<?= $root ?>/assets/images/avatar-fallback.svg'">
-                    <span class="site-logo font-extrabold text-lg">Foo-Link</span>
+                    <span class="font-extrabold text-xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Foo-Link</span>
                 </a>
             </div>
 
-                <div class="hidden md:flex gap-6">
-                <a href="<?= $root ?>/index.php" class="nav-glass-link <?= $currentFile === 'index.php' ? 'nav-active' : '' ?>">Accueil</a>
-                <a href="<?= $root ?>/recettes.php" class="nav-glass-link <?= $currentFile === 'recettes.php' ? 'nav-active' : '' ?>">Recettes</a>
-                <a href="<?= $root ?>/apropos.php" class="nav-glass-link <?= $currentFile === 'apropos.php' ? 'nav-active' : '' ?>">À propos</a>
-                <a href="<?= $root ?>/contact.php" class="nav-glass-link <?= $currentFile === 'contact.php' ? 'nav-active' : '' ?>">Contact</a>
+            <div class="hidden md:flex gap-2">
+                <a href="<?= $root ?>/index.php" class="px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-purple-500/20 <?= $currentFile === 'index.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>">Accueil</a>
+                <a href="<?= $root ?>/recettes.php" class="px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-purple-500/20 <?= $currentFile === 'recettes.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>">Recettes</a>
+                <a href="<?= $root ?>/apropos.php" class="px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-purple-500/20 <?= $currentFile === 'apropos.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>">À propos</a>
+                <a href="<?= $root ?>/contact.php" class="px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-purple-500/20 <?= $currentFile === 'contact.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
 
-                <div class="hidden sm:block w-72 relative">
+                <div class="hidden sm:block w-64 relative">
                     <form action="<?= $root ?>/recettes.php" method="get" class="relative">
                         <input name="search"
                             id="navSearchInput"
                             type="search"
-                            placeholder="Rechercher une recette..."
+                            placeholder="Rechercher..."
                             autocomplete="off"
-                            class="search-input w-full rounded-full px-4 py-2 text-sm" />
-                        <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 btn-ghost">🔍</button>
+                            style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(139, 92, 246, 0.3);"
+                            class="w-full rounded-full px-4 py-2 text-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400" />
+                        <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-purple-300 transition">🔍</button>
 
-                        <div id="navSuggestions" class="absolute top-12 w-full hidden flex-col rounded-xl overflow-hidden shadow-lg search-suggestions">
+                        <div id="navSuggestions" class="absolute top-12 w-full hidden flex-col rounded-xl overflow-hidden shadow-lg" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);">
                         </div>
                     </form>
                 </div>
 
                 <div class="hidden md:flex items-center gap-3">
                     <?php if ($currentUser): ?>
-                        <button id="notifBtn" class="icon-btn" aria-label="Notifications">🔔</button>
+                        <button id="notifBtn" class="p-2 rounded-full hover:bg-white/10 transition-all" aria-label="Notifications">🔔</button>
                         <div class="relative">
-                            <button id="accountBtn" class="flex items-center gap-2 px-2 py-1 rounded-full text-sm btn-ghost ring-1 ring-blue-300/30">
-                                <span class="text-sm">Bonjour, <?= htmlspecialchars($currentUser['firstname'] ?? $currentUser['email']) ?></span>
+                            <button id="accountBtn" class="flex items-center gap-2 px-3 py-2 rounded-full text-sm hover:bg-white/10 transition-all" style="background: rgba(255, 255, 255, 0.05);">
+                                <span class="text-sm font-medium">Bonjour, <?= htmlspecialchars($currentUser['firstname'] ?? $currentUser['email']) ?></span>
                                 <?php $defaultAvatar = $root . '/assets/images/avatar-fallback.svg'; ?>
-                                <img src="<?= htmlspecialchars(($currentUser['avatar'] ?? $defaultAvatar)) ?>" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8 rounded-full object-cover ring-2 ring-blue-300/50" onerror="this.src='<?= $defaultAvatar ?>'" alt="Avatar">
+                                <img src="<?= htmlspecialchars(($currentUser['avatar'] ?? $defaultAvatar)) ?>" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8 rounded-full object-cover ring-2 ring-purple-500/50" onerror="this.src='<?= $defaultAvatar ?>'" alt="Avatar">
                             </button>
 
-                            <div id="accountMenu" class="dropdown-menu hidden right-0 mt-2 w-48 rounded-lg shadow-xl py-1">
-                                <a href="<?= $root ?>/profil.php" class="dropdown-item">Profil</a>
-                                <a href="<?= $root ?>/views/dashboard/index.php" class="dropdown-item">Tableau de bord</a>
+                            <div id="accountMenu" class="absolute hidden right-0 mt-2 w-48 rounded-xl shadow-xl py-1" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <a href="<?= $root ?>/profil.php" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white hover:text-purple-400 transition">Profil</a>
+                                <a href="<?= $root ?>/views/dashboard/index.php" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white hover:text-purple-400 transition">Tableau de bord</a>
                                 <form method="POST" action="<?= $root ?>/logout.php" style="margin:0">
-                                    <button type="submit" class="dropdown-item text-red-600">Se déconnecter</button>
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition">Se déconnecter</button>
                                 </form>
                             </div>
                         </div>
 
                     <?php else: ?>
-                        <a href="<?= $root ?>/inscription.php" class="btn-ghost">Inscription</a>
-                        <a href="<?= $root ?>/connexion.php" class="btn-primary">Connexion</a>
+                        <a href="<?= $root ?>/inscription.php" class="px-4 py-2 rounded-full text-sm font-medium text-white hover:bg-purple-500/20 transition-all">Inscription</a>
+                        <a href="<?= $root ?>/connexion.php" class="px-6 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105">Connexion</a>
                     <?php endif; ?>
                 </div>
 
@@ -100,13 +101,13 @@ $currentFile = basename($_SERVER['SCRIPT_NAME']);
         </div>
     </div>
 
-    <div id="mobileMenu" role="menu" aria-hidden="true" class="hidden md:hidden flex flex-col gap-2 px-4 py-4 glass-nav-bg backdrop-blur-md border-t border-blue-400/30">
-        <a href="<?= $root ?>/index.php" class="mobile-link <?= $currentFile === 'index.php' ? 'nav-active' : '' ?> p-2 rounded-lg transition"><svg class="nav-icon w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"></path></svg>Accueil</a>
-        <a href="<?= $root ?>/recettes.php" class="mobile-link <?= $currentFile === 'recettes.php' ? 'nav-active' : '' ?> p-2 rounded-lg transition"><svg class="nav-icon w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v2H3zM5 10h14v8H5zM7 12v4h10v-4z"></path></svg>Recettes</a>
-        <a href="<?= $root ?>/apropos.php" class="mobile-link <?= $currentFile === 'apropos.php' ? 'nav-active' : '' ?> p-2 rounded-lg transition"><svg class="nav-icon w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>À propos</a>
-        <a href="<?= $root ?>/contact.php" class="mobile-link <?= $currentFile === 'contact.php' ? 'nav-active' : '' ?> p-2 rounded-lg transition"><svg class="nav-icon w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-6 4-5-3v8h16V8zM5 6h14V4H5v2z"></path></svg>Contact</a>
-        <a href="<?= $root ?>/inscription.php" class="mobile-link <?= $currentFile === 'inscription.php' ? 'nav-active' : '' ?> p-2 rounded-lg transition"><svg class="nav-icon w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-.001-10.001A5 5 0 0 0 12 12zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"></path></svg>Inscription</a>
-        <a href="<?= $root ?>/connexion.php" class="mobile-link btn-primary p-2 rounded-lg transition duration-200 shadow-lg">Connexion</a>
+    <div id="mobileMenu" role="menu" aria-hidden="true" class="hidden md:hidden flex flex-col gap-2 px-4 py-4" style="background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(20px); border-top: 1px solid rgba(139, 92, 246, 0.3);">
+        <a href="<?= $root ?>/index.php" class="p-3 rounded-xl transition hover:bg-purple-500/20 <?= $currentFile === 'index.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>"><svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"></path></svg>Accueil</a>
+        <a href="<?= $root ?>/recettes.php" class="p-3 rounded-xl transition hover:bg-purple-500/20 <?= $currentFile === 'recettes.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>"><svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v2H3zM5 10h14v8H5zM7 12v4h10v-4z"></path></svg>Recettes</a>
+        <a href="<?= $root ?>/apropos.php" class="p-3 rounded-xl transition hover:bg-purple-500/20 <?= $currentFile === 'apropos.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>"><svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>À propos</a>
+        <a href="<?= $root ?>/contact.php" class="p-3 rounded-xl transition hover:bg-purple-500/20 <?= $currentFile === 'contact.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>"><svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-6 4-5-3v8h16V8zM5 6h14V4H5v2z"></path></svg>Contact</a>
+        <a href="<?= $root ?>/inscription.php" class="p-3 rounded-xl transition hover:bg-purple-500/20 <?= $currentFile === 'inscription.php' ? 'bg-purple-500/20 text-purple-300' : 'text-white' ?>"><svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-.001-10.001A5 5 0 0 0 12 12zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"></path></svg>Inscription</a>
+        <a href="<?= $root ?>/connexion.php" class="p-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-lg hover:shadow-purple-500/50 transition-all text-center">Connexion</a>
     </div>
 </nav>
 

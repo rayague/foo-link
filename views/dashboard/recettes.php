@@ -14,7 +14,7 @@
 </head>
 
 <body class="site-dark">
-    <?php include __DIR__ . '/../partials/navbar.php'; ?>
+    
 
     <div class="w-full px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex flex-col lg:flex-row gap-6">
@@ -168,12 +168,30 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
-                                        <label class="text-sm text-muted">ID Catégorie</label>
-                                        <input type="number" name="categorie_id" placeholder="ID Catégorie" class="p-2 border rounded" required>
+                                        <label class="text-sm text-muted">Catégorie</label>
+                                        <?php
+                                        // Fetch categories for the select
+                                        require_once __DIR__ . '/../../models/Categorie.php';
+                                        $catModel = new Categorie();
+                                        $categories = $catModel->getAll();
+                                        ?>
+                                        <select name="categorie_id" class="p-2 border rounded w-full" required>
+                                            <option value="">Choisir une catégorie</option>
+                                            <?php foreach ($categories as $cat): ?>
+                                                <option value="<?php echo (int)$cat['id']; ?>"><?php echo htmlspecialchars($cat['nom']); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <div>
-                                        <label class="text-sm text-muted">ID Utilisateur</label>
-                                        <input type="number" name="user_id" placeholder="ID Utilisateur" class="p-2 border rounded" required>
+                                        <label class="text-sm text-muted">Utilisateur</label>
+                                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id ?? ''); ?>">
+                                        <div class="p-2 border rounded text-sm text-white/80 bg-gray-800">
+                                            <?php echo $user_id ? htmlspecialchars((
+                                                isset($_SESSION['user_firstname']) ? $_SESSION['user_firstname'] : 'Utilisateur'
+                                            ) . ' ' . (
+                                                isset($_SESSION['user_lastname']) ? $_SESSION['user_lastname'] : ''
+                                            )) : 'Non connecté'; ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="flex gap-2 justify-end">
