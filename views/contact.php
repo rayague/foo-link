@@ -2,57 +2,11 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Foo-Link</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <?php include __DIR__ . '/partials/head.php'; ?>
 </head>
 
-<body class="bg-gray-900">
-    <div class="fixed z-50 top-0 left-0 w-full bg-white/10 text-white backdrop-blur-md shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="text-xl font-bold text-blue-500 font-cursive flex gap-2">
-
-                    <svg class="h-6 w-6" fill="none" viewBox="0 -4.83 52 52" xmlns="http://www.w3.org/2000/svg">
-                        <g id="Group_49" data-name="Group 49" transform="translate(-788.946 -1785.428)">
-                            <path id="Path_131" data-name="Path 131"
-                                d="M814.946,1793.095a24,24,0,0,0-24,24h48A24,24,0,0,0,814.946,1793.095Z"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                            <line id="Line_51" data-name="Line 51" x2="48" transform="translate(790.946 1825.761)"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                            <line id="Line_52" data-name="Line 52" y2="5.667" transform="translate(814.946 1787.428)"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                        </g>
-                    </svg>
-                    Foo-Link
-
-
-                </div>
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex space-x-6">
-                    <a href="../index.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">Accueil</a>
-                    <a href="apropos.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">A
-                        propos</a>
-                    <a href="/views/contact.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">Contact</a>
-                    <a href="dashboard/index.php" class="text-white py-1 px-2 rounded-lg shadow bg-blue-500">Ajouter</a>
-                </nav>
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-700 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
+<body class="site-dark page-contact">
+    <?php include __DIR__ . '/partials/navbar.php'; ?>
 
     <!-- Hero -->
     <section class="bg-surface-secondary pt-44 text-white pb-16 px-4">

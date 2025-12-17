@@ -1,7 +1,14 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/Database.php';
 
 class Categorie extends Database {
+        // Nombre total de catégories
+        public function countAll() {
+            $sql = "SELECT COUNT(*) as total FROM categories";
+            $stmt = $this->pdo->query($sql);
+            $row = $stmt->fetch();
+            return $row ? $row['total'] : 0;
+        }
     public function getAll() {
         $sql = "SELECT * FROM categories";
         return $this->query($sql)->fetchAll();

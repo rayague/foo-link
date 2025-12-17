@@ -2,35 +2,11 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarte aux pommes caramélisées - Foo-Link</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <?php include __DIR__ . '/partials/head.php'; ?>
 </head>
 
-<body class="bg-background text-foreground">
-    <!-- Navigation -->
-    <nav class="bg-surface border-b border-border sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-2xl font-bold text-primary">Foo-Link</a>
-                <div class="hidden md:flex items-center gap-6">
-                    <a href="index.html"
-                        class="text-foreground hover:text-primary transition-colors font-medium">Accueil</a>
-                    <a href="recettes.html"
-                        class="text-foreground hover:text-primary transition-colors font-medium">Recettes</a>
-                    <a href="apropos.html" class="text-foreground hover:text-primary transition-colors font-medium">À
-                        propos</a>
-                    <a href="contact.html"
-                        class="text-foreground hover:text-primary transition-colors font-medium">Contact</a>
-                    <a href="ajout.html"
-                        class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition-colors">Ajouter
-                        une recette</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body class="site-dark page-recipe">
+    <?php include __DIR__ . '/partials/navbar.php'; ?>
 
     <!-- Recipe Detail -->
     <div class="max-w-4xl mx-auto px-4 py-8">
@@ -74,7 +50,7 @@
             </div>
 
             <img src="/placeholder.svg?height=400&width=800" alt="Tarte aux pommes"
-                class="w-full h-96 object-cover rounded-xl mb-6">
+                class="w-full h-96 object-cover rounded-xl mb-6" loading="lazy" decoding="async" width="800" height="400">
 
             <div class="flex gap-4 mb-6">
                 <button
@@ -307,14 +283,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-surface border-t border-border py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center text-sm text-muted">
-                <p>&copy; 2025 Foo-Link. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 
 </html>

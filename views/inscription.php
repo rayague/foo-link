@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) session_start();
+    require_once __DIR__ . '/../helpers/csrf.php';
 
 
     if(isset($_SESSION['flash']))
@@ -21,57 +22,11 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Foo-Link</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <?php include __DIR__ . '/partials/head.php'; ?>
 </head>
 
-<body class="bg-gray-900">
-    <div class="fixed z-50 top-0 left-0 w-full bg-white/10 text-white backdrop-blur-md shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="text-xl font-bold text-blue-500 font-cursive flex gap-2">
-
-                    <svg class="h-6 w-6" fill="none" viewBox="0 -4.83 52 52" xmlns="http://www.w3.org/2000/svg">
-                        <g id="Group_49" data-name="Group 49" transform="translate(-788.946 -1785.428)">
-                            <path id="Path_131" data-name="Path 131"
-                                d="M814.946,1793.095a24,24,0,0,0-24,24h48A24,24,0,0,0,814.946,1793.095Z"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                            <line id="Line_51" data-name="Line 51" x2="48" transform="translate(790.946 1825.761)"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                            <line id="Line_52" data-name="Line 52" y2="5.667" transform="translate(814.946 1787.428)"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
-                        </g>
-                    </svg>
-                    Foo-Link
-
-
-                </div>
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex space-x-6">
-                    <a href="../index.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">Accueil</a>
-                    <a href="apropos.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">A
-                        propos</a>
-                    <a href="/views/contact.php"
-                        class="text-white py-1 px-2 hover:bg-blue-500 transition ease-in duration-300 hover:text-white rounded-lg hover:text-blue-500">Contact</a>
-                    <a href="dashboard/index.php" class="text-white py-1 px-2 rounded-lg shadow bg-blue-500">Ajouter</a>
-                </nav>
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-700 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
+<body class="site-dark page-inscription">
+    <?php include __DIR__ . '/partials/navbar.php'; ?>
 
     <!-- Hero -->
     <section class="bg-surface-secondary pt-44  pb-16 px-4">
@@ -84,148 +39,77 @@
         </div>
     </section>
 
-    <section class="max-w-2xl mx-auto text-white px-4 py-12">
+    <section class="max-w-2xl mx-auto px-4 py-12">
         <?php if (!empty($error)): ?>
         <p class="text-red-400 text-center mb-4"><?= $error ?></p>
         <?php endif; ?>
 
-        <div class="bg-gray-800 border border-blue-500 rounded-xl p-8 shadow-lg shadow-gray-700">
-            <h1 class="text-4xl md:text-5xl text-center font-bold mb-6 text-foreground">Inscription</h1>
+        <div class="bg-surface p-8 rounded-2xl shadow-lg border border-border">
+            <h1 class="text-3xl sm:text-4xl text-center font-bold mb-4">Créer un compte</h1>
+            <p class="text-sm text-muted text-center mb-6">Rejoignez la communauté — partagez vos recettes préférées.</p>
 
+            <form class="max-w-md mx-auto space-y-4" method="POST" action="<?= isset($root) ? $root : '' ?>/controllers/inscriptionController.php">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generate_csrf_token()); ?>">
 
-            <form class="max-w-md mx-auto" method="POST" action="../controllers/inscriptionController.php">
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="email" name="floating_email" id="floating_email"
-                        class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                        placeholder=" " required />
-                    <label for="floating_email"
-                        class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email
-                    </label>
+                <div>
+                    <label for="floating_email" class="block text-sm font-medium text-foreground mb-1">Email</label>
+                    <input type="email" name="email" id="floating_email" required class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
                 </div>
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="password" id="password"
-                        class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                        placeholder=" " required />
-                    <label for="password"
-                        class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Mot
-                        de passe</label>
-                </div>
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="password2" id="password2"
-                        class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                        placeholder=" " required />
-                    <label for="password2"
-                        class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirmer
-                        mot de passe</label>
-                </div>
-                <div class="grid md:grid-cols-2 md:gap-6">
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="floating_first_name" id="floating_first_name"
-                            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                            placeholder=" " required />
-                        <label for="floating_first_name"
-                            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Prénom
-                        </label>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-foreground mb-1">Mot de passe</label>
+                        <input type="password" name="password" id="password" required class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
                     </div>
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="floating_last_name" id="floating_last_name"
-                            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                            placeholder=" " required />
-                        <label for="floating_last_name"
-                            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Nom
-                        </label>
+                    <div>
+                        <label for="password2" class="block text-sm font-medium text-foreground mb-1">Confirmer le mot de passe</label>
+                        <input type="password" name="password2" id="password2" required class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
                     </div>
                 </div>
-                <div class="grid md:grid-cols-2 md:gap-6">
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="tel" name="floating_phone" id="floating_phone"
-                            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                            placeholder=" " required />
-                        <label for="floating_phone"
-                            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Téléphone
-                        </label>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="floating_first_name" class="block text-sm font-medium text-foreground mb-1">Prénom</label>
+                        <input type="text" name="firstname" id="floating_first_name" required class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
                     </div>
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="floating_company" id="floating_company"
-                            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                            placeholder=" " required />
-                        <label for="floating_company"
-                            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Catégorie
-                        </label>
+                    <div>
+                        <label for="floating_last_name" class="block text-sm font-medium text-foreground mb-1">Nom</label>
+                        <input type="text" name="lastname" id="floating_last_name" required class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
                     </div>
                 </div>
-                <button type="submit"
-                    class="w-full bg-blue-500 text-white py-3 mb-4 rounded-lg mt-8 hover:bg-blue-700 transition ease-in font-semibold">
-                    Inscription
-                </button>
-                <a href="connexion.php" class="text-blue-300  underline underline-offset-4">J'ai déjà
-                    un
-                    compte?
-                    Me
-                    connecter</a>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="floating_phone" class="block text-sm font-medium text-foreground mb-1">Téléphone</label>
+                        <input type="tel" name="phone" id="floating_phone" class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-foreground mb-1">Catégorie préférée</label>
+                        <select id="category" name="category" class="w-full rounded-lg px-3 py-2 bg-transparent border border-border focus:border-primary focus:outline-none">
+                            <option value="">Sélectionner une catégorie...</option>
+                            <option value="entrees">Entrées</option>
+                            <option value="plats">Plats</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="boissons">Boissons</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="sans-gluten">Sans gluten</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full py-3">S'inscrire</button>
+                <div class="text-center mt-2"><a href="<?= isset($root) ? $root : '' ?>/connexion.php" class="text-muted underline">J'ai déjà un compte — me connecter</a></div>
             </form>
 
-        </div>
 
-
+    </section>
     </section>
 
 
 
 
 
-    <!-- Footer -->
-    <footer class="bg-gray-950 text-white w-[90%] my-10 rounded-lg mx-auto py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <div class="text-xl font-bold text-blue-500 font-cursive flex gap-2">
-
-                        <svg class="h-6 w-6" fill="none" viewBox="0 -4.83 52 52" xmlns="http://www.w3.org/2000/svg">
-                            <g id="Group_49" data-name="Group 49" transform="translate(-788.946 -1785.428)">
-                                <path id="Path_131" data-name="Path 131"
-                                    d="M814.946,1793.095a24,24,0,0,0-24,24h48A24,24,0,0,0,814.946,1793.095Z"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="4" />
-                                <line id="Line_51" data-name="Line 51" x2="48" transform="translate(790.946 1825.761)"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="4" />
-                                <line id="Line_52" data-name="Line 52" y2="5.667"
-                                    transform="translate(814.946 1787.428)" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="4" />
-                            </g>
-                        </svg>
-                        Foo-Link
-
-
-                    </div>
-                    <p class="text-muted text-sm">Votre plateforme de partage de recettes</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-foreground mb-4">Navigation</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html" class="text-muted hover:text-primary">Accueil</a></li>
-                        <li><a href="recettes.html" class="text-muted hover:text-primary">Recettes</a></li>
-                        <li><a href="apropos.html" class="text-muted hover:text-primary">À propos</a></li>
-                        <li><a href="contact.html" class="text-muted hover:text-primary">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-foreground mb-4">Catégories</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="recettes.html" class="text-muted hover:text-primary">Entrées</a></li>
-                        <li><a href="recettes.html" class="text-muted hover:text-primary">Plats</a></li>
-                        <li><a href="recettes.html" class="text-muted hover:text-primary">Desserts</a></li>
-                        <li><a href="recettes.html" class="text-muted hover:text-primary">Boissons</a></li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="mt-8 pt-8 border-t border-border text-center text-sm text-muted">
-                <p>&copy; 2025 Foo-Link. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 
 </html>

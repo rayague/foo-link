@@ -6,3 +6,523 @@ body {
   padding: 0;
   margin: 0;
 }
+
+:root{
+  /* Slightly toned down neutrals so header isn't pure white */
+  --bg: #F3EBE0; /* was very white; now warm beige */
+  --fg: #2C1810;
+  --surface: #F8F4F0; /* off-white surface */
+  --surface-2: #F1E9E0;
+  --border: #E6D8C3;
+  --muted: #8B7355;
+  --primary: #C17F4A; /* accent color */
+  --primary-dark: #A66D3D;
+}
+
+/* Navbar dark-sober theme (scoped) */
+:root{
+  /* align with main page gradient + blue accents */
+  --nav-bg: rgba(17,24,39,0.85); /* semi-transparent dark */
+  --nav-surface: rgba(8,16,32,0.9);
+  --nav-fg: #FFFFFF; /* main page uses white text */
+  --nav-muted: #93C5FD; /* blue-300-like for muted text */
+  --nav-accent: #3B82F6; /* blue-500 */
+  --nav-accent-dark: #2563EB; /* blue-600 */
+}
+
+/* Apply the main-page theme to header */
+#glassNav{
+  background:linear-gradient(90deg, rgba(8,16,32,0.8), rgba(6,10,30,0.8)) !important;
+  color:var(--nav-fg) !important;
+  border-bottom-color: rgba(255,255,255,0.03) !important;
+}
+#glassNav .site-logo{color:var(--nav-accent) !important}
+#glassNav .nav-glass-link, #glassNav .nav-link, #glassNav .mobile-link{
+  color:var(--nav-fg) !important;
+  background:transparent !important;
+  border-color:transparent !important;
+}
+#glassNav .nav-glass-link.nav-active, #glassNav .mobile-link.nav-active{
+  color: var(--nav-accent) !important;
+  font-weight: 600 !important;
+  box-shadow: inset 0 -2px 0 var(--nav-accent) !important;
+}
+#glassNav .nav-glass-link:hover, #glassNav .nav-link:hover, #glassNav .mobile-link:hover{
+  color:var(--nav-accent) !important;
+}
+#glassNav .btn-primary{
+  background:var(--nav-accent) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+}
+#glassNav .btn-primary:hover{background:var(--nav-accent-dark) !important}
+#glassNav .btn-ghost{color:var(--nav-muted) !important}
+#glassNav .search-input{background:transparent !important; border-color:rgba(255,255,255,0.04) !important; color:var(--nav-fg) !important}
+#glassNav .search-input::placeholder{color:rgba(255,255,255,0.6) !important}
+
+/* small icon-like buttons used in the header (notifications, toggle) */
+.icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0.45rem;border-radius:0.5rem;background:transparent;color:var(--nav-fg);border:0;cursor:pointer;
+  transition:background .14s ease, transform .08s ease;
+}
+.icon-btn:hover{background:rgba(255,255,255,0.04);transform:translateY(-1px)}
+
+/* stronger btn-primary for mobile and header */
+#glassNav .btn-primary, .btn-primary{padding:0.5rem 0.85rem;border-radius:0.6rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem}
+#glassNav .btn-ghost, .btn-ghost{padding:0.45rem 0.8rem;border-radius:0.6rem}
+
+#glassNav .btn-ghost{background:transparent;color:var(--nav-fg);border:1px solid rgba(255,255,255,0.03)}
+#glassNav .btn-ghost:hover{background:rgba(255,255,255,0.03)}
+
+/* ensure avatars and dropdowns match */
+#glassNav .avatar img{border:2px solid rgba(255,255,255,0.04) !important}
+#glassNav .dropdown-menu, #glassNav .dropdown-item{background:linear-gradient(180deg, rgba(8,12,28,0.95), rgba(6,8,20,0.95)) !important; color:var(--nav-fg) !important; border-color:rgba(255,255,255,0.02) !important}
+
+/* Recipes page: dark, sober surfaces that match the header */
+.page-recipes{
+  background: var(--nav-bg) !important;
+  color: var(--nav-fg) !important;
+}
+.page-recipes .max-w-7xl{color:var(--nav-fg)}
+.page-recipes section{background:transparent}
+.page-recipes .hero-panel{background:transparent}
+.page-recipes .card-surface, .page-recipes .recipe-card{background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--nav-fg); border-radius:12px}
+.page-recipes .recipe-card .p-5{padding:1.25rem}
+.page-recipes .recipe-card .text-muted{color:var(--nav-muted)}
+.page-recipes .recipe-chip{background:rgba(255,255,255,0.04); color:var(--nav-fg); padding:6px 8px; border-radius:999px; font-size:12px}
+.page-recipes .search-input{background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--nav-fg)}
+.page-recipes .btn-primary{background:var(--nav-accent); color:var(--nav-bg)}
+.page-recipes img{max-width:100%; display:block}
+
+/* responsive tweak for grid gaps on dark page */
+.page-recipes #recipesGrid a{display:block}
+
+/* Typography */
+body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+.site-logo{font-family: 'Dancing Script', cursive; color:var(--primary); font-size:1.45rem; line-height:1}
+
+/* Navbar tokens */
+.site-nav{background:var(--bg); color:var(--fg); border-bottom:1px solid var(--border)}
+.site-nav a{color:var(--fg)}
+.site-nav .nav-link{color:var(--fg); text-decoration:none}
+.site-nav .nav-link:hover{color:var(--primary)}
+
+.btn-primary{background:var(--primary); color:white}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-ghost{background:transparent; border:1px solid var(--border); color:var(--fg)}
+
+/* Mobile menu panel */
+#mobileMenu{background:var(--bg)}
+
+/* small utilities */
+.shadow-soft{box-shadow:0 6px 18px rgba(44,24,16,0.06)}
+
+/* Enhanced navbar visuals */
+.site-nav{background:var(--bg); border-bottom:1px solid var(--border);}
+.site-nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.site-nav .brand{display:flex;align-items:center;gap:12px}
+.site-nav .brand img{border-radius:8px}
+.nav-link{padding:8px 14px;border-radius:8px;display:inline-block;transition:all .14s ease;font-size:1rem;color:var(--fg);}
+.nav-link:hover{transform:translateY(-2px); color:var(--primary);}
+.btn-primary{padding:7px 10px;border-radius:8px;background:transparent;color:var(--primary);border:1px solid rgba(0,0,0,0.04);}
+.btn-primary:hover{background:rgba(193,127,74,0.06)}
+.btn-ghost{padding:7px 10px;border-radius:8px;background:transparent;color:var(--fg);border:1px solid transparent}
+.btn-ghost:hover{background:var(--surface-2)}
+
+/* Avatar and dropdown */
+.avatar{width:36px;height:36px;border-radius:9999px;overflow:hidden;display:inline-block;border:2px solid var(--surface)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;right:0;top:calc(100% + 8px);background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 30px rgba(44,24,16,0.08);min-width:200px;padding:8px;z-index:60}
+.dropdown-menu a{display:block;padding:8px 10px;border-radius:8px;color:var(--fg);text-decoration:none}
+.dropdown-menu a:hover{background:var(--surface-2);color:var(--primary)}
+
+/* Search suggestions */
+.search-suggestions{position:absolute;left:0;right:0;top:100%;background:var(--surface);border:1px solid var(--border);margin-top:6px;border-radius:8px;overflow:hidden;z-index:55}
+.search-suggestions button{display:block;width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;cursor:pointer}
+.search-suggestions button:hover{background:var(--surface-2)}
+
+/* search input styled to match the design tokens */
+.search-input{background:var(--surface);border:1px solid var(--border);color:var(--fg);padding:10px 14px}
+.search-input::placeholder{color:var(--muted)}
+.search-input:focus{outline:none;box-shadow:0 8px 26px rgba(193,127,74,0.12);border-color:var(--primary);}
+
+/* alignments used by navbar */
+.nav-container{display:flex;align-items:center;gap:20px}
+.nav-center{display:flex;align-items:center;gap:18px}
+
+/* glassNav specific rules to match tokens */
+#glassNav{background:var(--bg);border-bottom:1px solid var(--border);}
+#glassNav .site-logo{color:var(--primary)}
+#glassNav .nav-glass-link{color:var(--fg);padding:8px 12px;border-radius:8px;text-decoration:none;transition:all .12s ease}
+#glassNav .nav-glass-link:hover{color:var(--primary);transform:translateY(-2px)}
+#nav-glass-link, .nav-glass-link{ /* make nav-glass-link available globally */
+  color:var(--fg);
+  padding:8px 12px;
+  border-radius:8px;
+  text-decoration:none;
+  transition:all .12s ease;
+}
+.nav-glass-link:hover{color:var(--primary);transform:translateY(-2px)}
+#glassNav .dropdown-item{display:block;padding:10px 12px;color:var(--fg);text-decoration:none;border-radius:8px}
+#glassNav .dropdown-item:hover{background:var(--surface-2);color:var(--primary)}
+#glassNav .search-suggestions{background:var(--surface);border:1px solid var(--border);box-shadow:0 8px 30px rgba(44,24,16,0.06)}
+
+/* mobile link tokens */
+#mobileMenu{background:var(--bg);border-top:1px solid var(--border)}
+#mobileMenu .mobile-link{display:flex;align-items:center;gap:12px;padding:12px;border-radius:8px;color:var(--fg);text-decoration:none}
+#mobileMenu .mobile-link:hover{background:var(--surface-2);color:var(--primary)}
+#mobileMenu .mobile-link .nav-icon{width:20px;height:20px;margin-right:12px}
+
+/* small animation helpers used by navbar */
+.animate-fade-in{animation:fadeInUp .16s ease both}
+.animate-scale-in{animation:fadeInUp .12s ease both}
+
+/* icons inside nav */
+.nav-icon{width:18px;height:18px;display:inline-block;vertical-align:middle;margin-right:8px;fill:currentColor}
+
+/* mobile menu refinements */
+#mobileMenu{padding:12px 12px}
+#mobileMenu .mobile-link{display:flex;align-items:center;gap:12px;padding:12px;border-radius:8px;color:var(--fg);text-decoration:none}
+#mobileMenu .mobile-link:hover{background:var(--surface-2);color:var(--primary)}
+#mobileMenu .mobile-actions{padding-top:8px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+
+/* ensure suggestions are above mobile menu */
+.search-suggestions{z-index:120}
+
+
+/* small animation */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.animate-fade-up{animation:fadeInUp .18s ease both}
+
+/* Header-scoped overrides: force the navbar and mobile menu
+   to use the project's sober design tokens and neutralize
+   any remaining bright white/yellow utility classes. These
+   rules are intentionally specific and use safe !important
+   fallbacks so the header looks consistent on desktop/mobile. */
+#glassNav{
+  background:var(--bg) !important;
+  color:var(--fg) !important;
+  border-bottom:1px solid var(--border) !important;
+}
+
+#glassNav, #glassNav a, #glassNav button, #glassNav input, #glassNav img, #glassNav svg{
+  color:var(--fg) !important;
+}
+
+#glassNav a{background:transparent !important}
+
+#glassNav .nav-glass-link, #glassNav .nav-link, #glassNav .mobile-link{
+  color:var(--fg) !important;
+  background:transparent !important;
+}
+
+/* Buttons inside header use toned tokens */
+#glassNav .btn-primary{
+  background:var(--primary) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+}
+#glassNav .btn-primary:hover{background:var(--primary-dark) !important}
+
+#glassNav .btn-ghost{
+  background:transparent !important;
+  color:var(--fg) !important;
+  border-color:transparent !important;
+}
+#glassNav .btn-ghost:hover{background:var(--surface-2) !important}
+
+/* Search input and suggestions: neutral, not bright white */
+#glassNav input[type="search"],
+#glassNav .search-input{
+  background:var(--surface) !important;
+  color:var(--fg) !important;
+  border:1px solid var(--border) !important;
+}
+#glassNav .search-input::placeholder{color:var(--muted) !important}
+#glassNav .search-suggestions{
+  background:var(--surface) !important;
+  border:1px solid var(--border) !important;
+}
+
+/* Mobile toggle and menu */
+#glassNav button#navToggle, #glassNav #mobileMenu{
+  color:var(--fg) !important;
+  background:transparent !important;
+}
+#glassNav #mobileMenu{
+  background:var(--bg) !important;
+  border-top:1px solid var(--border) !important;
+}
+
+/* Dropdown menu items must be sober */
+#glassNav .dropdown-item, #glassNav .dropdown-menu, #glassNav .avatar img{
+  color:var(--fg) !important;
+  background:var(--surface) !important;
+}
+
+/* Header safety overrides (do NOT overwrite background so gradient shows):
+   keep layout and shadows controlled but allow header background to render. */
+#glassNav, .site-nav {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+#glassNav .btn-primary, .site-nav .btn-primary {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+#glassNav .btn-ghost, .site-nav .btn-ghost {
+  background: transparent !important;
+  color: var(--fg) !important;
+}
+
+#glassNav .search-input, .site-nav .search-input {
+  background: var(--surface) !important;
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
+}
+
+#glassNav .nav-glass-link, .site-nav .nav-glass-link, .site-nav .nav-link {
+  color: var(--fg) !important;
+}
+
+/* Final header override: placed at EOF to ensure the main-page gradient and
+   colors render (higher cascade priority). Remove the outline after QA. */
+html body #glassNav {
+  background: linear-gradient(90deg, rgba(8,16,32,0.85), rgba(6,10,30,0.85)) !important;
+  color: var(--nav-fg) !important;
+  box-shadow: 0 6px 28px rgba(2,6,23,0.6) !important;
+  border-bottom: none !important; /* remove thin bright line */
+  box-shadow: 0 6px 28px rgba(2,6,23,0.6), inset 0 -1px 0 rgba(255,255,255,0.02) !important;
+}
+
+/* active nav indicator (generic, used if partials set `nav-active`) */
+.nav-active { color: var(--nav-accent) !important; font-weight:600 !important }
+
+/* Strong final fixes for header contrast and primary button color.
+   These rules are intentionally specific and placed at EOF to beat
+   other utility classes and ensure the navbar is readable. */
+html body #glassNav,
+html body #glassNav * {
+  color: inherit;
+}
+
+html body #glassNav, html body #glassNav .max-w-7xl {
+  color: var(--nav-fg) !important;
+}
+
+/* Links in the navbar should be readable (near-white) unless active */
+html body #glassNav .nav-glass-link,
+html body #glassNav .mobile-link {
+  color: rgba(255,255,255,0.88) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+html body #glassNav .nav-glass-link.nav-active,
+html body #glassNav .mobile-link.nav-active {
+  color: var(--nav-accent) !important;
+  font-weight: 700 !important;
+  box-shadow: inset 0 -3px 0 var(--nav-accent) !important;
+}
+
+/* Ensure primary action in the header uses the NAV accent (blue), not the site primary token */
+html body #glassNav .btn-primary {
+  background: var(--nav-accent) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 14px rgba(37,99,235,0.12) !important;
+}
+
+html body #glassNav .btn-primary:hover {
+  background: var(--nav-accent-dark) !important;
+}
+
+/* Make ghost buttons and icon buttons clearly visible on dark header */
+html body #glassNav .btn-ghost,
+html body #glassNav .icon-btn {
+  color: rgba(255,255,255,0.9) !important;
+  background: transparent !important;
+  border-color: rgba(255,255,255,0.04) !important;
+}
+
+/* Search input tuned for dark header */
+html body #glassNav .search-input {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--nav-fg) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Ensure mobile menu Connexion button uses nav primary */
+html body #glassNav #mobileMenu .btn-primary {
+  background: var(--nav-accent) !important;
+  color: #fff !important;
+}
+
+/* Scoped homepage dark theme: apply on pages that opt-in via `site-dark` class. */
+.site-dark {
+  background: linear-gradient(180deg, rgba(8,16,32,0.95), rgba(6,10,30,0.95)) !important;
+  color: var(--nav-fg) !important;
+}
+
+.site-dark .card-surface, .site-dark .recipe-card, .site-dark .bg-white\/5, .site-dark .bg-white\/10 {
+  background: rgba(255,255,255,0.02) !important;
+  border-color: rgba(255,255,255,0.03) !important;
+}
+
+/* Modal: centered card with backdrop */
+#addRecipeModal{display:none; align-items:center; justify-content:center; position:fixed; inset:0; z-index:9999}
+#addRecipeModal.show{display:flex !important}
+#addRecipeModal .card-surface{background:var(--surface) !important; color:var(--fg) !important}
+#addRecipeModal .btn-ghost{background:transparent !important}
+#addRecipeModal .btn-primary{background:var(--nav-accent) !important}
+#addRecipeBackdrop{position:absolute; inset:0; background:rgba(0,0,0,0.6); backdrop-filter: blur(4px)}
+
+/* Responsive tweaks for homepage hero actions */
+@media (max-width: 640px) {
+  .max-w-3xl .btn-primary,
+  .max-w-3xl .btn-ghost {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.75rem !important;
+    font-size: 0.95rem !important;
+  }
+  .max-w-3xl .btn-ghost { margin-top: 0.5rem; }
+  .max-w-3xl form .btn-primary { width: auto; }
+}
+
+@media (min-width: 641px) {
+  .max-w-3xl .btn-primary, .max-w-3xl .btn-ghost { min-width: 160px; }
+}
+
+/* Mobile menu toggle: ensure it's clearly visible on dark header */
+html body #glassNav #navToggle {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem !important;
+  border-radius: 0.5rem !important;
+  background: rgba(255,255,255,0.03) !important;
+  color: var(--nav-fg) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+  z-index: 70 !important;
+}
+
+html body #glassNav #navToggle svg,
+html body #glassNav #navToggle svg * {
+  stroke: currentColor !important;
+  fill: none !important;
+}
+
+/* Slightly stronger hero panel on mobile for better legibility */
+.max-w-3xl {
+  background: linear-gradient(180deg, rgba(0,0,0,0.48), rgba(0,0,0,0.28));
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Hero (homepage) color refinements: title, subtitle, actions, search */
+.max-w-3xl h1 {
+  color: var(--nav-accent-dark) !important; /* slightly deeper blue for less glare */
+  text-shadow: 0 6px 20px rgba(2,6,23,0.6) !important;
+}
+.max-w-3xl p {
+  color: rgba(255,255,255,0.90) !important; /* warm, readable off-white */
+  line-height: 1.45;
+}
+.max-w-3xl .btn-primary {
+  background: linear-gradient(180deg, var(--nav-accent) 0%, var(--nav-accent-dark) 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 30px rgba(37,99,235,0.10) !important;
+}
+.max-w-3xl .btn-primary:hover { background: linear-gradient(180deg, var(--nav-accent-dark) 0%, #1e40af 100%) !important; }
+.max-w-3xl .btn-ghost {
+  background: rgba(255,255,255,0.06) !important;
+  color: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+.max-w-3xl .btn-ghost:hover { background: rgba(255,255,255,0.09) !important; }
+.max-w-3xl input[type="text"], .max-w-3xl .search-input {
+  color: #fff !important;
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+.max-w-3xl input::placeholder, .max-w-3xl .search-input::placeholder {
+  color: rgba(255,255,255,0.78) !important;
+}
+
+/* Slight spacing tweak so hero text breathes better on small screens */
+@media (max-width: 640px) {
+  .max-w-3xl { padding: 1rem !important; }
+  .max-w-3xl h1 { font-size: 1.9rem !important; }
+  .max-w-3xl p { font-size: 0.98rem !important; }
+}
+
+/* Dark-mode token overrides for pages using `.site-dark`. These increase
+   foreground contrast and make controls readable on dark backgrounds. */
+.site-dark {
+  --fg: #F8FAFC; /* near-white for text */
+  --muted: rgba(248,250,252,0.72);
+  --surface: rgba(255,255,255,0.03);
+  --surface-2: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.06);
+  --primary: #C17F4A;
+  --primary-dark: #A66D3D;
+  --nav-fg: #FFFFFF;
+}
+
+/* Form controls and inputs in dark mode */
+.site-dark input,
+.site-dark textarea,
+.site-dark select,
+.site-dark .search-input {
+  background: var(--surface) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--border) !important;
+}
+.site-dark input::placeholder,
+.site-dark textarea::placeholder { color: rgba(255,255,255,0.6) !important; }
+
+/* Buttons — make primary and ghost states clear on dark pages */
+.site-dark .btn-primary {
+  background: var(--nav-accent) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(59,130,246,0.12) !important;
+}
+.site-dark .btn-ghost {
+  background: transparent !important;
+  color: rgba(255,255,255,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Footer and cards */
+.site-dark footer, .site-dark .card-surface, .site-dark .dropdown-menu {
+  background: rgba(255,255,255,0.02) !important;
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
+}
+
+/* Ensure nav links are visible */
+.site-dark #glassNav .nav-glass-link,
+.site-dark #glassNav .mobile-link,
+.site-dark #glassNav .dropdown-item {
+  color: rgba(255,255,255,0.92) !important;
+}
+
+/* Muted text */
+.site-dark .text-muted { color: rgba(255,255,255,0.68) !important; }
+
+/* Utility fallbacks for text classes used in views (in case Tailwind isn't available) */
+.text-foreground { color: var(--fg) !important; }
+.text-muted { color: var(--muted) !important; }
+.bg-surface { background: var(--surface) !important; }
+.bg-surface-secondary { background: var(--surface-2) !important; }
+
+
+
+

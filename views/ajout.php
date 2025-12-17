@@ -1,47 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajouter une recette - Foo-Link</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            background: '#FDFBF7',
-            foreground: '#2C1810',
-            surface: '#FFFFFF',
-            'surface-secondary': '#F5F1E8',
-            border: '#E8DCC8',
-            muted: '#8B7355',
-            primary: '#C17F4A',
-            'primary-hover': '#A66D3D',
-            secondary: '#6B8E4E',
-            accent: '#D4913E',
-          }
-        }
-      }
-    }
-  </script>
+  <?php include __DIR__ . '/partials/head.php'; ?>
 </head>
-<body class="bg-background text-foreground">
-  <!-- Navigation -->
-  <nav class="bg-surface border-b border-border sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <a href="index.html" class="text-2xl font-bold text-primary">Foo-Link</a>
-        <div class="hidden md:flex items-center gap-6">
-          <a href="index.html" class="text-foreground hover:text-primary transition-colors font-medium">Accueil</a>
-          <a href="recettes.html" class="text-foreground hover:text-primary transition-colors font-medium">Recettes</a>
-          <a href="apropos.html" class="text-foreground hover:text-primary transition-colors font-medium">À propos</a>
-          <a href="contact.html" class="text-foreground hover:text-primary transition-colors font-medium">Contact</a>
-          <a href="ajout.html" class="bg-primary text-white px-4 py-2 rounded-lg">Ajouter une recette</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+<body class="site-dark page-ajout">
+  <?php include __DIR__ . '/partials/navbar.php'; ?>
 
   <!-- Hero -->
   <section class="bg-surface-secondary py-12 px-4">
@@ -156,11 +119,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-surface border-t border-border py-8 mt-12">
-    <div class="max-w-7xl mx-auto px-4 text-center text-sm text-muted">
-      <p>&copy; 2025 Foo-Link. Tous droits réservés.</p>
-    </div>
-  </footer>
+  <?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

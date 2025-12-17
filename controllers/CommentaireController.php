@@ -1,5 +1,5 @@
 <?php
-require_once '../models/Commentaire.php';
+require_once __DIR__ . '/../models/Commentaire.php';
 
 class CommentaireController {
     private $commentaireModel;
@@ -8,7 +8,7 @@ class CommentaireController {
     }
     public function index($recette_id) {
         $commentaires = $this->commentaireModel->getAllByRecette($recette_id);
-        include '../views/dashboard/commentaires.php';
+        include __DIR__ . '/../views/dashboard/commentaires.php';
     }
     public function create($data) {
         $this->commentaireModel->create($data['contenu'], $data['recette_id'], $data['user_id']);
